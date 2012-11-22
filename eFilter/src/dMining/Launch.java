@@ -8,6 +8,7 @@ public class Launch {
 	static double percentage = 0.01;
 	static int spam_training = 117;
 	static int ham_training = 283;
+	static int feature_size = 100;
 	public Launch() {
 		
 	}
@@ -94,8 +95,10 @@ public class Launch {
 			
 			
 			//Step2 : Feature selection : information gain : Since the Entropy for the total set is the same just compute the later part
-			iterator = ex.getTotalwords().keySet().iterator();
+			HashMap<String, Integer> feature = new HashMap<String, Integer>();
 			
+			iterator = ex.getTotalwords().keySet().iterator();
+			double max = 0;
 			while ( iterator.hasNext())
 			{
 				String word = iterator.next();
@@ -124,6 +127,11 @@ public class Launch {
 					}
 				}
 				double info = InfoGain.claculate(spam_given_number_of_w/number_of_w,  spam_given_number_of_not_w/number_of_not_w , number_of_w);
+				
+				//sore_by_Entropy
+				
+				
+				
 				
 			}
 			

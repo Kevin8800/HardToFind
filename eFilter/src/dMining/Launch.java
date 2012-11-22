@@ -1,6 +1,7 @@
 package dMining;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -95,10 +96,11 @@ public class Launch {
 			
 			
 			//Step2 : Feature selection : information gain : Since the Entropy for the total set is the same just compute the later part
-			HashMap<String, Integer> feature = new HashMap<String, Integer>();
+			HashMap<String, Double> feature = new HashMap<String, Double>();
 			
 			iterator = ex.getTotalwords().keySet().iterator();
-			double max = 0;
+			int n = 0;
+
 			while ( iterator.hasNext())
 			{
 				String word = iterator.next();
@@ -106,7 +108,6 @@ public class Launch {
 				double spam_given_number_of_w = 0.0 ; 
 				double number_of_not_w = 0.0 ; 
 				double spam_given_number_of_not_w = 0.0 ; 
-				
 				for (FileBean f : files)
 				{
 					if (f.getWords().containsKey(word))
@@ -130,53 +131,23 @@ public class Launch {
 				
 				//sore_by_Entropy
 				
-				
-				
-				
-			}
-			
-			
-			
-			
-			
-			
-			//testing :
-			
-			/*
-			for (FileBean f : files)
-			{
-				System.out.println("--------------------------------------");
-				System.out.println("Filename : " + f.getFilename());
-				System.out.println("Class : " + f.getClasslabel());
-				iterator =  f.getWords().keySet().iterator();  
-				while(iterator.hasNext())
+				feature.put(word, info);
+				Double Info = new Double(info);
+				if (Info.equals(Double.NaN))
 				{
-					String key = iterator.next().toString(); 
-					int value =f.getWords().get(key);
-					System.out.println(key +" " + f.getFilename() + " "+ value );
+					System.out.println(word+ " "+ number_of_w + " " +spam_given_number_of_w);
+					n = n + 1;
 				}
-				System.out.println("--------------------------------------");
 
 			}
-			*/
+			System.out.println(n);
 			
+			ArrayList<Double> list = new ArrayList<Double>(feature.values());
+			Collections.sort(list);
+
 			
-			/*
-			iterator  = ex.getHam().keySet().iterator();
-			System.out.println("!!!!!!ham FD");
-			System.out.println("--------------------------------------");
-			while (iterator.hasNext()) 
-				{  
-				String key = iterator.next().toString(); 
-				int value =ex.getHam().get(key);
-				System.out.println(key +" "+ value );
-				}
-			System.out.println("--------------------------------------");
-			System.out.println("!!!!!!ham FD");
-			System.out.println("--------------------------------------");
-			*/
-			//System.out.println( ex.getHam().size());
-			//System.out.println( ex.getSpam().size());
+			System.out.println(list.size());
+			
 		}
 	}
 }

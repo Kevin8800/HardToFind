@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+		  xmlns:c="http://java.sun.com/jsp/jstl/core"
+		  xmlns:f="http://java.sun.com/jsp/jstl/fmt"
+version="2.0">
+	<jsp:directive.page contentType="text/html; charset=UTF-8" 
+		pageEncoding="UTF-8" session="true"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<title>FoodsRUs</title>
+</head>
+<body>
+	<div id="main">
+		<jsp:include page="header.jspx"/>
+		
+		<div id="leftColumn">
+		<p>leftColumn</p>
+		</div>
+	
+		<div id="rightColumn">
+			<p>checkout page</p>
+			<form action='CheckOut'> 	
+			<fieldset>
+				<c:if test="${not empty checkoutError}">
+				<p>${checkoutError}</p>
+				</c:if>
+				<input type='submit' id ='login' name='checkout' value='checkout'/>
+				<input type='submit' id ='login' name='checkout' value='continue shopping'/>
+			</fieldset>	
+			</form>
+		</div>
+		
+		<jsp:include page="footer.jspx"/>
+	</div>
+</body>
+</html>
+</jsp:root>

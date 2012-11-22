@@ -1,0 +1,163 @@
+body {
+    width: 1000px;
+    text-align: center;
+    margin: 50px auto;
+    background: #CCFFCC;
+}
+
+#main { 
+	background: #eee; 
+}
+
+#header {
+    height: 250px;
+    background: #99CCFF; 
+    
+}
+
+#logo {
+    height: 250px;
+    width: 350px;
+    float: left;
+}
+
+#headerRight {
+	height: 240px;
+    width: 650px;
+	float: left;
+}
+
+#buttons {
+	text-align: right;
+	height: 40px;
+	width: 650px;
+	margin-bottom: 5px;
+}
+
+#buttons input {
+    width: 100px;
+    margin: 15px 2px 5px;   
+}
+
+#clientName {
+	float: left;
+}
+
+#search {
+	text-align: right;
+	height: 35px;
+	width: 650px;
+}
+
+#searchText {
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+#banner1 {
+    height: 170px;
+    width: 650px;
+    font-size: 50px;
+    color: #333;
+}
+
+#leftColumn {
+/*     height: 400px; */
+    width: 350px;
+    float: left;
+    background: #99CCFF;
+}
+
+#rightColumn {
+/*     height: 400px; */
+    width: 650px;
+    float: left;
+    background: #eee;
+}
+
+.categoryBox {
+	
+/*     margin: 21px 14px 6px; */
+/* 	height: 100px; */
+/* 	border:solid 1px #555; */
+}
+
+.categoryBox a{
+	height: 176px;
+    width: 212px;
+	float: left;
+}
+
+.categoryImage {
+	padding-left: 0px;
+	padding: 1px;
+    border:solid 1px #555;
+}
+
+#itemtable {
+	width: 650px;
+	border: 1em;
+	align: center;
+}
+
+#itemtable td
+{
+	border: 2px solid black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#itemtable form{
+	width: 150px;
+	text-align: left;
+}
+
+#shoppingCart h{
+	font-size: x-large;
+	text-decoration: underline;
+}
+
+#shoppingCartBtns
+{
+	padding-top: 20px;
+}
+
+#shoppingCartBtns input
+{
+	margin-left: 20px;
+}
+
+#cartTable {
+	padding-top: 20px;
+	width: 650px;
+	border: 1em;
+	margin: auto;
+}
+
+#cartTable td
+{
+	border: 2px solid black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#cartTable form{
+	width: 150px;
+	text-align: left;
+}
+
+#total {
+	text-align: right;
+	padding-right: 20px;
+}
+
+.qtyInput {
+	width: 40px;
+	margin: 5px;
+}
+
+#footer {
+    height: 60px;
+    clear: both;
+    background: #99CCFF;
+}

@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 public class Launch {
 	static double percentage = 0.02;
-	static int spam_training = 117;
-	static int ham_training = 283;
 	static int feature_size = 50;
 	public Launch() {
 		

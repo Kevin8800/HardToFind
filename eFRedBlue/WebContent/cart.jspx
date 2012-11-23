@@ -11,20 +11,19 @@ version="2.0">
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<link rel="stylesheet" type="text/css" href="../css/index.css"/>
 <title>FoodsRUs</title>
 </head>
 <body>
 	<div id="main">
 		<jsp:include page="header.jspx"/>
-		<form action="FRU" onsubmit="return checkUpdate();">
+		<form action="ShoppingCart" method="get" onsubmit="return checkUpdate();">
+		</form>
 		<div id="shoppingCart">
 			<h>Shopping Cart</h>
 			<div id="shoppingCartBtns">
-				
-					<input type="submit" id="update" name="update" value="Update"/>
-					<input type="submit" id="continue" name="continue" value="Continue"/>
-					<input type="submit" id="checkout" name="checkout" value="Checkout"/>
+					<input type="submit" id="continue" name="docart" value="Continue"/>
+					<input type="submit" id="checkout" name="docart" value="Checkout"/>
 				
 			</div>	
 			<table id="cartTable">
@@ -41,13 +40,17 @@ version="2.0">
 					<td><f:formatNumber value="${item.price}" type="currency"/></td>
 					<td><f:formatNumber value="${item.extended}" type="currency"/></td>
 					<td>
+						<form action="ShoppingCart" method="get" onsubmit="return checkUpdate();">
+						<input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
 						<input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='${item.quantity}'/>
+						<input type="submit" id="update" name="docart" value="Update"/>
+						</form>
 					</td>
 					</tr>	
 	   			</c:forEach>
 	   		</table>
 		</div>
-		</form>
+		
 		
 		<div id="totalList">
 			<p>TOTAL:	${sessionScope.cart.total}</p>

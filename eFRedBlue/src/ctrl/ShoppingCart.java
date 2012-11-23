@@ -33,7 +33,7 @@ public class ShoppingCart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String add = request.getParameter("add");
+		String add = request.getParameter("docart");
 		String target ;
 		HttpSession session = request.getSession();
 		if (add != null)
@@ -62,7 +62,6 @@ public class ShoppingCart extends HttpServlet {
 
 					fru.addToCart(cart, request.getParameter("itemToAdd"),request.getParameter("qtyToAdd"));	
 					session.setAttribute("cart", cart);
-					request.setAttribute("cart",cart);
 				}
 				catch (SQLException e)
 				{
@@ -71,15 +70,49 @@ public class ShoppingCart extends HttpServlet {
 				}
 				target ="/cart.jspx";
 			}
-			else
+			else if (add.equalsIgnoreCase("Update"))
 			{
-				target = "/index.jspx";
+				if ((ShoppingCartHelper)session.getAttribute("cart")!= null)
+				{
+					try 
+					{
+						FRUModel fru = (FRUModel) this.getServletContext().getAttribute("fru");
+						ShoppingCartHelper cart = (ShoppingCartHelper) session.getAttribute("cart");
+						fru.updateCart(cart, request.getParameter("itemToAdd"),request.getParameter("qtyToAdd"));
+						session.setAttribute("cart", cart);
+						target = "/cart.jspx";
+
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+						target = "/my500.jspx";
+					}
+	
+				}
+				else
+				{
+					System.out.println("Error: Shopping cart does not exsit when try to modify it");
+					target = "/my500.jspx";
+				}
+			}
+			else if (add.matches("Checkout"))
+			{
+				target = "/checkout.jspx";
+			}
+			else if (add.matches("Continue"))
+			{
+				target ="/index.jspx";
+			}
+			else
+			{					
+				target = "/my404.jspx";
 			}
 		}
 		else
 		{
-			target ="/index.jspx";
-		}
+			target = "/my404.jspx";
+			}
 		
 		request.getRequestDispatcher(target).forward(request, response);
 	}

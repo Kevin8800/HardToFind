@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>FoodsRUs</title>
-<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<link rel="stylesheet" type="text/css" href="../css/index.css"/>
 </head>
 <body>
 	<div id="main">
@@ -21,7 +21,7 @@
 		
 		<div id="rightColumn">
 			<p>Your order is confirmed</p>
-			<p>You can view your order <a href="${filename}">here</a></p>
+			<p>You can view your order <a href="../${filename}">here</a></p>
 		</div>
 		
 		<jsp:include page="footer.jspx"/>

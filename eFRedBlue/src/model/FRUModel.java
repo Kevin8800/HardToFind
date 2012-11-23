@@ -140,12 +140,17 @@ public class FRUModel {
      * @param shoppingCart
      * @param itemNumber
      * @param qty
+     * @throws SQLException 
      */
-    public void updateCart(ShoppingCartHelper shoppingCart, String itemNumber, int qty)
+    public void updateCart(ShoppingCartHelper shoppingCart, String itemNumber, String qty) throws SQLException
     {
     	//do we need to check the existence of the item(in cart)?
-    	
-    	shoppingCart.updateQty(itemNumber, qty);
+    	if (!shoppingCart.hasItem(itemNumber))
+    	{
+    		this.addToCart(shoppingCart, itemNumber, qty);
+    	}else{
+    		shoppingCart.updateQty(itemNumber, Integer.parseInt(qty));
+    	}
     }
     
     /**

@@ -11,12 +11,12 @@ version="2.0">
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script type="text/javascript" src="js/index.js">;</script>
+<script type="text/javascript" src="../js/index.js">;</script>
 </head>
 <body>
 	<div id="header">
 		<a href="FRU">
-      		<img src="images/carts.png" id="logo" alt="FoodsRUs Logo"/>
+      		<img src="../images/carts.png" id="logo" alt="FoodsRUs Logo"/>
   		</a>
 		
 		<div id="headerRight">
@@ -44,7 +44,7 @@ version="2.0">
 				</form>
 			</div>
 				
-			<img src="images/banner.png" id="banner" alt="FoodsRUs Banner"/>	
+			<img src="../images/banner.png" id="banner" alt="FoodsRUs Banner"/>	
 		</div>
 	</div>
 </body>

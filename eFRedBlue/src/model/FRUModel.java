@@ -151,6 +151,7 @@ public class FRUModel {
     	}else{
     		shoppingCart.updateQty(itemNumber, Integer.parseInt(qty));
     	}
+    	shoppingCart.checkOutUpdate();
     }
     
     /**
@@ -162,7 +163,7 @@ public class FRUModel {
     	//more to be added, not sure how controller will use it.
     	
     	// to update total price, shipping, HST etc.
-    	shoppingCart.checkOutUpdate();
+    	//shoppingCart.checkOutUpdate();
     }
     
     /**

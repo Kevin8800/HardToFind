@@ -79,7 +79,7 @@ public class CheckOut extends HttpServlet {
 					request.getSession().setAttribute("checkout", "checkout");// for counting the access time before checkout 
 					try {
 						cart = (ShoppingCartHelper) request.getSession().getAttribute("cart");
-						model.checkOut(cart);
+						//model.checkOut(cart);
 						model.exportPO(this.getServletContext().getRealPath(filename), (Integer)this.getServletContext().getAttribute("id"), 
 								(ClientBean)request.getSession().getAttribute("client"), cart);
 						request.getSession().setAttribute("continue", "again"); // for listener

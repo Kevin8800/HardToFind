@@ -30,20 +30,28 @@ public class ArffGenerator {
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		Date date = new Date();
-		System.out.println(dateFormat.format(date));
 		String filename = Constants.File_Prefix + dateFormat.format(date) + Constants.File_Extension;
 		String filepath = Constants.DeskTop_location + "/" + filename;
-		System.out.println(filepath);
 
 		Writer output = null;
 	    File file = new File(filepath);
 	    output = new BufferedWriter(new FileWriter(file));
 	    output.write("@relation Email_spam_train\n");
 	    output.write("\n");
-	    for(int i = 0 ; i < number_of_features; i ++)
+	    
+	    Iterator <String> iterator  = files.keySet().iterator();
+	    if (!iterator.hasNext() )
 	    {
-	    	 output.write("@attribute " + "a"+i + " numeric\n");
+	    	output.close();
+	    	throw new Exception("Empty file hashmap");
 	    }
+	    
+    	Iterator <String> words = files.get(iterator.next()).keySet().iterator();
+    	while (words.hasNext())
+    	{
+	    	 output.write("@attribute " + words.next() + " numeric\n");
+	    }
+    	
 	    output.write("\n");
 	    output.write("@attribute " + "class" + " {spam,ham}\n");
 	    output.write("\n");
@@ -51,7 +59,7 @@ public class ArffGenerator {
 	    output.write("\n");
 	    output.write("\n");
 
-	    Iterator <String> iterator  = files.keySet().iterator();
+	    iterator  = files.keySet().iterator();
 	    while(iterator.hasNext() )
 	    {
 	    	String name_of_file = iterator.next();
@@ -60,10 +68,7 @@ public class ArffGenerator {
 	    	while (wordIterator.hasNext())
 	    	{
 	    		String word = wordIterator.next();
-	    		if (wordIterator.hasNext())
-	    		{
-	    			output.write(files.get(name_of_file).get(word) +",");
-	    		}
+	    		output.write(files.get(name_of_file).get(word) +",");
 	    	}
 	    	
 	    	if (name_of_file.contains(Constants.HAM_NAME))
@@ -79,6 +84,8 @@ public class ArffGenerator {
 
 	    }
 	    output.close();
+		System.out.println("Done, File is generated at : " + filepath);
+
 	}
 	/**
 	 * @param args

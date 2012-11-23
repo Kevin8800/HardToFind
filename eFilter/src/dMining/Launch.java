@@ -21,7 +21,7 @@ public class Launch {
 	{
 		
 		HashMap<String ,HashMap<String,Double>> files = new HashMap<String, HashMap<String,Double>>();
-		if (args.length != 1 && !new File(args[0]).isDirectory())
+		if (args.length != 1 || !new File(args[0]).isDirectory())
 		{
 			System.out.print("Usage : java -jar launch.jar folder_name");
 			System.exit(-1);
@@ -127,7 +127,7 @@ public class Launch {
 			Collections.sort(list);
 			Collections.reverse(list);
 			
-			//Select feature with high entropy
+			//Select feature with high Information Gain
 			double max = list.get(feature_size);
 			iterator = feature.keySet().iterator();
 			while(iterator.hasNext())
@@ -145,23 +145,18 @@ public class Launch {
 			{
 				String filename = iterator.next();
 				Iterator<String> iteratorword = words.keySet().iterator();
-				//System.out.println("_______________________");
-				//System.out.println(filename);
 				while(iteratorword.hasNext())
 				{
 					String word = iteratorword.next();
 					if(words.get(word).containsKey(filename))
 					{
 						files.get(filename).put(word, Math.log10((Constants.TOTAL_HAM_TRAINNING+ Constants.TOTAL_SPAM_TRAINNING)/words.get(word).size())/Math.log10(2)* words.get(word).get(filename));
-						System.out.println(word  + " " +Math.log10((Constants.TOTAL_HAM_TRAINNING+ Constants.TOTAL_SPAM_TRAINNING)/words.get(word).size())/Math.log10(2)* words.get(word).get(filename));
 					}
 					else
 					{
 						files.get(filename).put(word, 0.0);
 					}
 				}
-				//System.out.println("_______________________");
-
 			}
 			try 
 			{
@@ -171,6 +166,7 @@ public class Launch {
 				System.out.println("Error: Files generation failed");
 				e.printStackTrace();
 			}
+
 		
 		}
 	}

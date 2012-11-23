@@ -47,7 +47,6 @@ public class InfoGain {
 		}
 	}
 	
-	
 	public static void main(String[] args)
 	{
 		double res = InfoGain.claculate(24.0, 0.29210526315789476, 20.0);

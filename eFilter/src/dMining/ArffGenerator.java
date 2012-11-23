@@ -25,13 +25,34 @@ public class ArffGenerator {
 	public ArffGenerator() {
 		
 	}
-
-	public static void generate(int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
+	
+	
+	public static void trainGenerate(int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		Date date = new Date();
-		String filename = Constants.File_Prefix + dateFormat.format(date) + Constants.File_Extension;
+		String filename = Constants.train_File_Prefix + dateFormat.format(date) + Constants.File_Extension;
 		String filepath = Constants.DeskTop_location + "/" + filename;
+		
+		generate(filepath, number_of_features, files);
+	}
+	
+	public static void testGenerate(int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
+	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+		Date date = new Date();
+		String filename = Constants.test_File_Prefix + dateFormat.format(date) + Constants.File_Extension;
+		String filepath = Constants.DeskTop_location + "/" + filename;
+		
+		generate(filepath, number_of_features, files);
+	}
+
+	public static void generate(String filepath, int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
+	{
+//		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+//		Date date = new Date();
+//		String filename = Constants.train_File_Prefix + dateFormat.format(date) + Constants.File_Extension;
+//		String filepath = Constants.DeskTop_location + "/" + filename;
 
 		Writer output = null;
 	    File file = new File(filepath);

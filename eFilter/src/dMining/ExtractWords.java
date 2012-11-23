@@ -35,89 +35,68 @@ public class ExtractWords {
 
 	/**
 	 * 
-	 * @param filename : dir
-	 * @return HashMap of words and it's count 
-	 * @throws FileNotFoundException 
+	 * @param dir
+	 * @return map of words with files it in and frequency 
 	 */
-	public HashMap<String, Integer> extarct(File file)
+	public HashMap<String, HashMap<String, Integer>> extarctWords(File dir)
 	{
-		 HashMap<String, Integer> words = new HashMap<String, Integer>();
-		 BufferedReader br =null;
-		 	try 
-		 	{
-			 	 br = new BufferedReader(new FileReader(file));
-		         String availalbe;
-		         while((availalbe = br.readLine()) != null) 
-		         {
-		            String[] cadidates = availalbe.split("[^a-zA-Z]");
-	                for(String s : cadidates)
-	                {
-		                	s = s.toLowerCase();
-		                	
-	                			if (!words.containsKey(s))
-		                		{
-		                			
-		                			words.put(s, 1);
-		                			if (!totalwords.containsKey(s))
-		                			{
-		                				totalwords.put(s, 1);
-		                			}
-		                			else
-		                			{
-		                				totalwords.put(s, (totalwords.get(s) + 1));
-		                			}
-		                			if (file.getName().contains("ham"))
-		                			{
-			                			if (!ham.containsKey(s))
-			                			{
-			                				ham.put(s, 1);
-			                			}
-			                			else
-			                			{
-			                				ham.put(s, (ham.get(s) + 1));
-			                			}
-		                			}
-		                			else
-		                			{
-			                			if (!spam.containsKey(s))
-			                			{
-			                				spam.put(s, 1);
-			                			}
-			                			else
-			                			{
-			                				spam.put(s, (spam.get(s) + 1));
-			                			}
-		                			}
-		                		}
-		                		else
-		                		{
-		                			words.put(s, words.get(s) + 1);		                		
-		                		}
-	                }
-		         }
-     
-		 	}
-	        catch (Exception e) 
-	        {
-	    				// TODO Auto-generated catch block
-	    				e.printStackTrace();
-	        }
-		 	finally 
-		 	{
-		         if (br != null) 
-		         {
-		            try 
-		            {
-		               br.close();
-		            } 
-		            catch (IOException e) 
-		            {
-		               e.printStackTrace();
-		            }
-		         }
-		 	}
-        return words;
-
+		 HashMap<String, HashMap<String, Integer>> words = new  HashMap<String, HashMap<String, Integer>>();
+		 
+		 
+			File folder = dir;
+			File[] listOfFiles = folder.listFiles();
+			for (File file : listOfFiles) 
+			{
+				if(!file.isDirectory())
+				{
+					BufferedReader br =null;
+					try 
+					{
+							br = new BufferedReader(new FileReader(file));
+					         String availalbe;
+					         while((availalbe = br.readLine()) != null) 
+					         {   
+					        	 	String [] candiates = availalbe.split("[^a-zA-Z]");
+			
+							       for(String c: candiates)
+							       {
+							           if (!checkstopword(c))
+							           {
+							               if (words.containsKey(c) && words.get(c).containsKey(file.getName()))
+							               {
+							                   words.get(c).put(file.getName(), words.get(c).get(file.getName()) + 1);
+							               }else if (words.containsKey(c) && !words.get(c).containsKey(file.getName()))
+							               {
+							                   words.get(c).put(file.getName(), 1);
+							               }else
+							               {
+							                   words.put(c, new HashMap<String, Integer>());
+							                   words.get(c).put(file.getName(), 1);
+							               }
+							           }
+							       }
+					         }
+					 	}catch (Exception e) 
+				        {
+				    				e.printStackTrace();
+				        }finally 
+					 	{
+					         if (br != null) 
+					         {
+					            try 
+					            {
+					               br.close();
+					            } 
+					            catch (IOException e) 
+					            {
+					               e.printStackTrace();
+					            }
+					         }
+					 	}
+				}
+			}
+		 	return words;
+	
 	}
 	public HashMap<String, Integer> getTotalwords() {
 		return totalwords;
@@ -126,5 +105,15 @@ public class ExtractWords {
 		this.totalwords = totalwords;
 	}
 	
-
+	private boolean checkstopword(String s)
+	{
+		for (String w : Constants.StopWords)
+		{
+			if (s.equalsIgnoreCase(w))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }

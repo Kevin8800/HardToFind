@@ -1,14 +1,15 @@
 package dMining;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 public class Launch {
-	static double percentage = 0.01;
+	static double percentage = 0.05;
 	static int spam_training = 117;
 	static int ham_training = 283;
-	static int feature_size = 100;
+	static int feature_size = 50;
 	public Launch() {
 		
 	}
@@ -19,164 +20,158 @@ public class Launch {
 	public static void main(String[] args) 
 	{
 		
-		ArrayList<FileBean> files = new ArrayList<FileBean>();
-		
-		if (args.length != 1)
+		HashMap<String ,HashMap<String,Double>> files = new HashMap<String, HashMap<String,Double>>();
+		if (args.length != 1 && !new File(args[0]).isDirectory())
 		{
-			System.out.print("Usage : java -jar ExtractWords folder_name");
+			System.out.print("Usage : java -jar launch.jar folder_name");
+			System.exit(-1);
 		}
 		else
 		{
 			ExtractWords ex = new ExtractWords();
-
-			File folder = new File(args[0]);
+			
+			File folder = new File (args[0]);
 			File[] listOfFiles = folder.listFiles();
-			int TrainingSize = listOfFiles.length;
-			for (File i : listOfFiles) 
+			for (File f : listOfFiles) 
 			{
-				if(!i.isDirectory())
-				{
-					String classlabel = i.getName().split("_")[0];
-					//Step1 : extarct keyword from file 
-					HashMap<String, Integer> map = ex.extarct(i);
-					
-					FileBean file = new FileBean(i.getName(),classlabel,map);
-					files.add(file);
-				}
+				//initialize files
+				files.put(f.getName(), new HashMap<String,Double>());
 			}
 			
-			//Step2 : Feature selection : Document Frequency : If word appears in less than 1% of the document we will remove it.
+			//Step1 : Extract keyword from file 
+			HashMap<String, HashMap<String, Integer>> words = ex.extarctWords(folder);
+			
+			//Step2a : Feature selection : Document Frequency : If word appears in less than 1% of the document we will remove it.
 			
 			// get total word to remove  
-			double theshold = TrainingSize * percentage ;
-			Iterator<String> iterator  = ex.getTotalwords().keySet().iterator();
+			double theshold = (Constants.TOTAL_HAM_TRAINNING + Constants.TOTAL_SPAM_TRAINNING) * percentage ;
+			Iterator<String> iterator  = words.keySet().iterator();
 			HashSet<String> wordToRemove = new HashSet<String>();
 			while (iterator.hasNext()) 
 			{  
-			   String key = iterator.next();
-			   if (ex.getTotalwords().get(key) < theshold)
-			   {
-					wordToRemove.add(key);
-			   }
+				int count = 0 ;
+				String key = iterator.next();
+			   Iterator<String> iteratorFile  = words.get(key).keySet().iterator();
+			   	while(iteratorFile.hasNext())
+			   	{
+			   		String filename = iteratorFile.next();
+			   		count = count + words.get(key).get(filename);
+			   	}
+	   			if (count < theshold)
+	   			{
+	   				wordToRemove.add(key);
+	   			}
+	   			else
+	   			{
+	   				
+	   			}
 			}
 			
 			for(String s: wordToRemove)
 			{
-				if (ex.getHam().containsKey(s))
-				{
-					ex.getHam().remove(s);
-				}
-				if (ex.getSpam().containsKey(s))
-				{
-					ex.getSpam().remove(s);
-				}
-				if ( ex.getTotalwords().containsKey(s))
-				{
-					ex.getTotalwords().remove(s);
-				}
-			}
-			
-			
-			for (FileBean f : files)
-			{	
-				for(String s: wordToRemove)
-				{
-					if (f.getWords().containsKey(s))
-					{
-						f.getWords().remove(s);
-					}
-				}
+				words.remove(s);
 			}
 			
 			/**
 			 * Maybe we can check if some word that is only in ham /spam and use these words to discriminate
 			 */
+			//Step2b : Feature selection : information gain : Since the Entropy for the total set is the same just compute the later part
+			HashMap<String, Double> feature = new HashMap<String, Double>();
 			
-			
-			
-			//Step2 : Feature selection : information gain : Since the Entropy for the total set is the same just compute the later part
-			HashMap<String, Integer> feature = new HashMap<String, Integer>();
-			
-			iterator = ex.getTotalwords().keySet().iterator();
-			double max = 0;
+			iterator = words.keySet().iterator();
+			int n = 0;
 			while ( iterator.hasNext())
 			{
 				String word = iterator.next();
-				double number_of_w = 0.0 ; 
 				double spam_given_number_of_w = 0.0 ; 
-				double number_of_not_w = 0.0 ; 
-				double spam_given_number_of_not_w = 0.0 ; 
-				
-				for (FileBean f : files)
+				double number_of_w = words.get(word).size();
+				double number_of_not_w = (Constants.TOTAL_HAM_TRAINNING+ Constants.TOTAL_SPAM_TRAINNING) - number_of_w;
+				Iterator<String> iteratorFile  = words.get(word).keySet().iterator();
+				while (iteratorFile.hasNext())
 				{
-					if (f.getWords().containsKey(word))
+					String filename = iteratorFile.next();
+					if (filename.contains(Constants.SPAM_NAME))
 					{
-						number_of_w = number_of_w + 1;
-						if(f.getClasslabel().equalsIgnoreCase("spam"))
-						{
-							spam_given_number_of_w = spam_given_number_of_w+1;
-						}
+						spam_given_number_of_w = spam_given_number_of_w + 1;
+					}
+				}
+				double spam_given_number_of_not_w = Constants.TOTAL_SPAM_TRAINNING - spam_given_number_of_w;
+				double info ;
+				if ( number_of_not_w == 0.0 )
+				{
+					info = InfoGain.claculate(spam_given_number_of_w/number_of_w, 0.0 , number_of_w);
+
+				}
+				else if (number_of_w == 0.0)
+				{
+					info = InfoGain.claculate(0.0, spam_given_number_of_not_w/number_of_not_w , number_of_w);
+
+				}
+				else
+				{
+					info = InfoGain.claculate(spam_given_number_of_w/number_of_w,  spam_given_number_of_not_w/number_of_not_w , number_of_w);
+				}
+				Double Info = new Double(info);
+				
+			
+				if (Info.isNaN() )
+				{
+					System.out.println(spam_given_number_of_w+ " / " + number_of_w + " : " + spam_given_number_of_not_w + " /"+ number_of_not_w);
+
+				}
+				feature.put(word, info);
+			}
+			
+			//Sore feature by entropy
+			ArrayList<Double> list = new ArrayList<Double>(feature.values());
+			Collections.sort(list);
+			Collections.reverse(list);
+			
+			//Select feature with high entropy
+			double max = list.get(feature_size);
+			iterator = feature.keySet().iterator();
+			while(iterator.hasNext())
+			{
+				String word = iterator.next();
+
+
+				if (feature.get(word) < max)
+				{
+					words.remove(word);
+				}
+			}
+			iterator = files.keySet().iterator();
+			while (iterator.hasNext())
+			{
+				String filename = iterator.next();
+				Iterator<String> iteratorword = words.keySet().iterator();
+				//System.out.println("_______________________");
+				//System.out.println(filename);
+				while(iteratorword.hasNext())
+				{
+					String word = iteratorword.next();
+					if(words.get(word).containsKey(filename))
+					{
+						files.get(filename).put(word, Math.log10((Constants.TOTAL_HAM_TRAINNING+ Constants.TOTAL_SPAM_TRAINNING)/words.get(word).size())/Math.log10(2)* words.get(word).get(filename));
+						System.out.println(word  + " " +Math.log10((Constants.TOTAL_HAM_TRAINNING+ Constants.TOTAL_SPAM_TRAINNING)/words.get(word).size())/Math.log10(2)* words.get(word).get(filename));
 					}
 					else
 					{
-						number_of_not_w = number_of_not_w + 1;
-						if (f.getClasslabel().equalsIgnoreCase("spam"))
-						{
-							spam_given_number_of_not_w = spam_given_number_of_not_w+1;
-						}
+						files.get(filename).put(word, 0.0);
 					}
 				}
-				double info = InfoGain.claculate(spam_given_number_of_w/number_of_w,  spam_given_number_of_not_w/number_of_not_w , number_of_w);
-				
-				//sore_by_Entropy
-				
-				
-				
-				
-			}
-			
-			
-			
-			
-			
-			
-			//testing :
-			
-			/*
-			for (FileBean f : files)
-			{
-				System.out.println("--------------------------------------");
-				System.out.println("Filename : " + f.getFilename());
-				System.out.println("Class : " + f.getClasslabel());
-				iterator =  f.getWords().keySet().iterator();  
-				while(iterator.hasNext())
-				{
-					String key = iterator.next().toString(); 
-					int value =f.getWords().get(key);
-					System.out.println(key +" " + f.getFilename() + " "+ value );
-				}
-				System.out.println("--------------------------------------");
+				//System.out.println("_______________________");
 
 			}
-			*/
-			
-			
-			/*
-			iterator  = ex.getHam().keySet().iterator();
-			System.out.println("!!!!!!ham FD");
-			System.out.println("--------------------------------------");
-			while (iterator.hasNext()) 
-				{  
-				String key = iterator.next().toString(); 
-				int value =ex.getHam().get(key);
-				System.out.println(key +" "+ value );
-				}
-			System.out.println("--------------------------------------");
-			System.out.println("!!!!!!ham FD");
-			System.out.println("--------------------------------------");
-			*/
-			//System.out.println( ex.getHam().size());
-			//System.out.println( ex.getSpam().size());
+			try 
+			{
+				ArffGenerator.generate(feature_size, files);
+			}catch(Exception e)
+			{
+				System.out.println("Error: Files generation failed");
+				e.printStackTrace();
+			}
+		
 		}
 	}
 }

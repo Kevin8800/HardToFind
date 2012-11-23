@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="FoodsRUs">
+    <wb-module deploy-name="eFRedBlue">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/FoodsRUs/build/classes"/>
-        <property name="context-root" value="FoodsRUs"/>
+        <property name="java-output-path" value="/eFRedBlue/build/classes"/>
+        <property name="context-root" value="eFRedBlue"/>
     </wb-module>
 </project-modules>

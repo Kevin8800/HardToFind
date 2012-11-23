@@ -29,35 +29,29 @@ public class ArffGenerator {
 	
 	public static void trainGenerate(int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
 	{
-		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-		Date date = new Date();
-		String filename = Constants.train_File_Prefix + dateFormat.format(date) + Constants.File_Extension;
-		String filepath = Constants.DeskTop_location + "/" + filename;
+		String prefix = Constants.train_File_Prefix;
 		
-		generate(filepath, number_of_features, files);
+		generate(prefix, number_of_features, files);
 	}
 	
 	public static void testGenerate(int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
 	{
-		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-		Date date = new Date();
-		String filename = Constants.test_File_Prefix + dateFormat.format(date) + Constants.File_Extension;
-		String filepath = Constants.DeskTop_location + "/" + filename;
+		String prefix = Constants.test_File_Prefix;
 		
-		generate(filepath, number_of_features, files);
+		generate(prefix, number_of_features, files);
 	}
 
-	public static void generate(String filepath, int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
+	public static void generate(String prefix, int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
 	{
-//		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-//		Date date = new Date();
-//		String filename = Constants.train_File_Prefix + dateFormat.format(date) + Constants.File_Extension;
-//		String filepath = Constants.DeskTop_location + "/" + filename;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+		Date date = new Date();
+		String filename = prefix + dateFormat.format(date) + Constants.File_Extension;
+		String filepath = Constants.DeskTop_location + "/" + filename;
 
 		Writer output = null;
 	    File file = new File(filepath);
 	    output = new BufferedWriter(new FileWriter(file));
-	    output.write("@relation Email_spam_train\n");
+	    output.write("@relation Email_"+prefix+"\n");
 	    output.write("\n");
 	    
 	    Iterator <String> iterator  = files.keySet().iterator();

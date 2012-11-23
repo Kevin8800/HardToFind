@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 public class Launch {
-	static double percentage = 0.05;
+	static double percentage = 0.02;
 	static int spam_training = 117;
 	static int ham_training = 283;
-	static int feature_size = 80;
+	static int feature_size = 50;
 	public Launch() {
 		
 	}
@@ -139,7 +139,7 @@ public class Launch {
 			Collections.reverse(list);
 			
 			//Select feature with high Information Gain
-			double max = list.get(feature_size);
+			double max = list.get(feature_size - 1);
 			iterator = feature.keySet().iterator();
 			while(iterator.hasNext())
 			{

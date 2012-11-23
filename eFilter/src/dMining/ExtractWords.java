@@ -60,8 +60,9 @@ public class ExtractWords {
 			
 							       for(String c: candiates)
 							       {
-							           if (!checkstopword(c))
-							           {
+							           //c = c.toLowerCase();
+							    	  if (!checkstopword(c))
+							          {
 							               if (words.containsKey(c) && words.get(c).containsKey(file.getName()))
 							               {
 							                   words.get(c).put(file.getName(), words.get(c).get(file.getName()) + 1);

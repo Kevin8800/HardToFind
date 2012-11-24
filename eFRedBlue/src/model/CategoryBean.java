@@ -15,7 +15,33 @@ public class CategoryBean {
 	private String name;
 	private String description;
 	private byte[] picture; 
+	private String pic_name;
 	
+
+
+	public String getPic_name() {
+		return pic_name;
+	}
+
+
+	public void setPic_name() {
+		if (this.catID == 3)
+		{
+			pic_name= "meat.jpg";
+		}
+		else if (this.catID == 4)
+		{
+			pic_name= "cheese.jpg";
+		}
+		else if (this.catID ==5)
+		{
+			pic_name= "icecream.jpg";
+		}
+		else 
+		{
+			pic_name= "cereal.jpg";
+		}		
+	}
 
 
 	/**
@@ -30,6 +56,7 @@ public class CategoryBean {
 		this.name = name;
 		this.description = description;
 		this.picture = picture;
+		this.setPic_name();
 	}
 
 
@@ -95,5 +122,5 @@ public class CategoryBean {
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
-
+	
 }

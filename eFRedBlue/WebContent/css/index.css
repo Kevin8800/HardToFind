@@ -1,8 +1,18 @@
+* {
+    font-family: Georgia,"Times New Roman",Times,serif;
+}
+html {
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0;
+}
 body {
+	background: #CCFFCC;
+	background: url("../image/bg.jpg") repeat-x scroll 0 0 #E8E4D9;
     width: 1000px;
     text-align: center;
     margin: 50px auto;
-    background: #CCFFCC;
 }
 
 #main { 
@@ -81,9 +91,11 @@ body {
 /* 	border:solid 1px #555; */
 }
 
+
 .categoryBox a{
-	height: 176px;
-    width: 212px;
+	margin:20px;
+	height: 210x;
+    width: 250px;
 	float: left;
 }
 
@@ -158,7 +170,7 @@ body {
 }
 
 #footer {
-    height: 60px;
+    height: 50px;
     clear: both;
     background: #99CCFF;
 }

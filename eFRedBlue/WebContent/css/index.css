@@ -102,7 +102,7 @@ body {
 .categoryImage {
 	padding-left: 0px;
 	padding: 1px;
-    border:solid 1px #555;
+    /*border:solid 1px #555;*/
 }
 
 .qtyInput {
@@ -112,13 +112,13 @@ body {
 
 #itemtable {
 	width: 650px;
-	border: 1em;
+	/*border: 1em;*/
 	align: center;
 }
 
 #itemtable td
 {
-	border: 2px solid black;
+	/*border: 2px solid black;*/
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
@@ -146,13 +146,13 @@ body {
 #cartTable, #analyticsTable{
 	padding-top: 20px;
 	width: 650px;
-	border: 1em;
+	/*border: 1em;*/
 	margin: auto;
 }
 
 #cartTable td, #analyticsTable td
 {
-	border: 2px solid black;
+	/*border: 2px solid black;*/
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
@@ -173,4 +173,21 @@ body {
     height: 50px;
     clear: both;
     background: #99CCFF;
+}
+
+.categoryLabelText, .categoryLabelText:visited {
+    color: #A62121;
+    cursor: pointer;
+    text-decoration: none;
+}
+.categoryLabelText:hover {
+    color: #5A4A42;
+    text-decoration: none;
+}
+#totalListsummary {
+	 color: #A62121;
+	text-align: centre;
+	padding-right: 20px;
+	width: 200px;
+	float:right;
 }

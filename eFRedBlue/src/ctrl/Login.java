@@ -55,8 +55,6 @@ public class Login extends HttpServlet {
 				{
 					try 
 					{
-						session.setAttribute("login", "n");	
-
 						ClientBean client = model.validatePassword(clientID, password);
 						if (! (client == null))
 						{

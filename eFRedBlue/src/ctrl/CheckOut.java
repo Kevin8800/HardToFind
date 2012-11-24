@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBException;
 
 import util.*;
@@ -35,15 +36,15 @@ public class CheckOut extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String checkout = request.getParameter("checkout");
 		String target;
+		HttpSession session =  request.getSession(false);
 		if(request.getSession().getAttribute("continue") == null){
 		request.getSession().setAttribute("continue", "first"); // for listener
 		}
 		if (checkout==null)
 		{
-			if (request.getSession(false) == null || !request.getSession().getAttribute("login").equals("login"))
+			if (session == null || (ClientBean)session.getAttribute("client") ==null)
 			{
 				target = "/login.jspx";
-				System.out.println("checkout -> login");
 			}
 			else
 			{
@@ -57,7 +58,7 @@ public class CheckOut extends HttpServlet {
 				ShoppingCartHelper cart = (ShoppingCartHelper) request.getSession().getAttribute("cart");
 
 				//do check out 
-				if (request.getSession(false) == null || request.getSession().getAttribute("client") == null)
+				if (session == null || (ClientBean)session.getAttribute("client") ==null)
 				{
 					request.setAttribute("checkoutError", "You haven't logged in, please login before check out");
 					target = "/login.jspx";

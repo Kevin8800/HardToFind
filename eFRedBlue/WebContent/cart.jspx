@@ -17,35 +17,34 @@ version="2.0">
 <body>
 	<div id="main">
 		<jsp:include page="header.jspx"/>
-		<form action="ShoppingCart" method="get" onsubmit="return checkUpdate();">
-		</form>
 		<div id="shoppingCart">
+		<form action="ShoppingCart" method="get" onsubmit="return checkUpdate();">
 			<h>Shopping Cart</h>
 			<div id="shoppingCartBtns">
 					<input type="submit" id="continue" name="docart" value="Continue"/>
 					<input type="submit" id="checkout" name="docart" value="Checkout"/>
-				
 			</div>	
+		</form>		
+		
 			<table id="cartTable">
 				<td>Number</td>
 				<td>Name</td>
 				<td>Price</td>
 				<td>Extended Price</td>
 				<td>Quantity</td>
-				
+				<td></td>
 				<c:forEach var="item" items="${sessionScope.cart.items}">
 	        		<tr>
 					<td>${item.itemNumber}</td>
 					<td>${item.name}</td>
 					<td><f:formatNumber value="${item.price}" type="currency"/></td>
 					<td><f:formatNumber value="${item.extended}" type="currency"/></td>
-					<td>
-						<form action="ShoppingCart" method="get" onsubmit="return checkUpdate();">
-						<input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
-						<input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='${item.quantity}'/>
-						<input type="submit" id="update" name="docart" value="Update"/>
-						</form>
-					</td>
+					<form action="ShoppingCart" method="get" onsubmit="return checkUpdate();">
+					<input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
+					<td><input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='${item.quantity}'/></td>
+					<td><input type="submit" id="update" name="docart" value="Update"/></td>
+					</form>
+					
 					</tr>	
 	   			</c:forEach>
 	   		</table>

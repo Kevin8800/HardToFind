@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.ClientBean;
 import model.FRUModel;
 import model.ItemBean;
 import model.ShoppingCartHelper;
@@ -96,11 +97,18 @@ public class ShoppingCart extends HttpServlet {
 					target = "/my500.jspx";
 				}
 			}
-			else if (add.matches("Checkout"))
+			else if (add.equalsIgnoreCase("Checkout"))
 			{
-				target = "/checkout.jspx";
+				if ((ClientBean)session.getAttribute("client") != null)
+				{
+					target = "/checkout.jspx";
+				}
+				else
+				{
+					target = "/login.jspx";
+				}
 			}
-			else if (add.matches("Continue"))
+			else if (add.equalsIgnoreCase("Continue"))
 			{
 				target ="/index.jspx";
 			}

@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 public class Launch {
-	static double percentage = 0.05;
-	static int feature_size = 100;
+	static double percentage = 0.05; //document frequency
+	static int feature_size = 80;
 	public Launch() {
 		
 	}
@@ -21,13 +21,33 @@ public class Launch {
 		HashMap<String ,HashMap<String,Double>> trainFiles = new HashMap<String, HashMap<String,Double>>();
 		HashMap<String ,HashMap<String,Double>> testFiles = new HashMap<String, HashMap<String,Double>>();
 		ArrayList<String> attributes = new ArrayList<String>();
-		if (args.length != 2 || !new File(args[0]).isDirectory())
+		if ((args.length != 2 && args.length != 4 && args.length != 6 )|| !new File(args[0]).isDirectory() || !new File(args[1]).isDirectory())
 		{
-			System.out.print("Usage : java -jar launch.jar folder_name(for training) folder_name(for testing set)\n");
+			System.out.print("Usage : java -jar launch.jar folder_name(for training) folder_name(for testing) -df DocumentFrequencyThreshold(optional) -fs FeatureSize(optional)\n If the DocumentFrequencyThreshold or FeatureSize were not provided \n default values are used. 0.05(DFT) 80(Features)");
 			System.exit(-1);
 		}
 		else
 		{
+			if (args.length == 4 && args[2].equals("-df"))
+			{
+				percentage = Double.parseDouble(args[3]);
+			}else if (args.length == 4 && args[2].equals("-fs"))
+			{
+				feature_size = Integer.parseInt(args[3]);
+			}else if (args.length == 6 && args[2].equals("-fs") && args[4].equals("-df"))
+			{
+				feature_size = Integer.parseInt(args[3]);
+				percentage = Double.parseDouble(args[5]);
+			}else if (args.length == 6 && args[2].equals("-df") && args[4].equals("-fs"))
+			{
+				feature_size = Integer.parseInt(args[5]);
+				percentage = Double.parseDouble(args[3]);
+			}else if (args.length == 4 || args.length == 6)
+			{
+				System.out.print("Usage : java -jar launch.jar folder_name(for training) folder_name(for testing) -df DocumentFrequencyThreshold(optional) -fs FeatureSize(optional)\n If the DocumentFrequencyThreshold or FeatureSize were not provided \n default values are used. 0.05(DFT) 80(Features)");
+				System.exit(-2);
+			}
+			
 			ExtractWords ex = new ExtractWords();
 			
 			File trainFolder = new File (args[0]);
@@ -144,7 +164,7 @@ public class Launch {
 				String word = iterator.next();
 
 
-				if (feature.get(word) <= max)
+				if (feature.get(word) < max)
 				{
 					trainWords.remove(word);
 				}

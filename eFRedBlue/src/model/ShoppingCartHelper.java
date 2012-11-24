@@ -66,7 +66,7 @@ public class ShoppingCartHelper {
 	public void add(ItemBean item)
 	{
 		this.shoppingCart.put(item.getItemNumber(), item);
-		//this.updateTotalPrice();
+		this.updateTotalPrice();
 	}
 	
 
@@ -122,11 +122,8 @@ public class ShoppingCartHelper {
 		if (this.total > ShoppingCartHelper.minOrder)
 		{
 			this.setShipping(ShoppingCartHelper.zeroShipping);
-		}else if (this.total > 0){
+		}else{
 			this.setShipping(ShoppingCartHelper.standardShipping);
-		}else
-		{
-			this.setShipping(0);
 		}
 	}
 	

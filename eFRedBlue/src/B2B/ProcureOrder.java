@@ -107,7 +107,9 @@ public class ProcureOrder {
 		
 		out.write("</table></body></html>");
 		out.close();
-		
+		File report = new File("report.html");
+		Desktop.getDesktop().open(report);
+	
 	}
 
 }

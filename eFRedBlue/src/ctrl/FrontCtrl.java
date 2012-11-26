@@ -83,6 +83,11 @@ public class FrontCtrl extends HttpServlet {
 		{
 			this.getServletContext().getNamedDispatcher("CheckOut").forward(request, response);
 		}
+		else if (info.matches("/Statistic"))
+		{
+			this.getServletContext().getNamedDispatcher("Statistic").forward(request, response);
+
+		}
 		else
 		{
 			System.out.println("!!!!Error");

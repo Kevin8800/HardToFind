@@ -3,7 +3,11 @@ function checkQty(form)
 {
 	var qtyToAdd = form.childNodes[1].value;
 	var ok = true;
-	if (qtyToAdd < 0)
+	if (qtyToAdd == 0)
+	{
+		alert("The quantity for the item you're trying to add is 0!");
+		ok = false;
+	}else if (qtyToAdd < 0)
 	{
 		alert("You're trying to add a negative quantity!");
 		ok = false;

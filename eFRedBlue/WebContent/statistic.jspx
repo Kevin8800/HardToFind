@@ -11,7 +11,7 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/css/index.css"/>
 <title>Website Analytics</title>
 </head>
 <body>

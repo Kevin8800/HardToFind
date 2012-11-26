@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
  * print out the static of the website, has client number and ave checkout time now
  * more static can be add in later on
  */
-@WebServlet("/Statistic")
 public class Statistic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

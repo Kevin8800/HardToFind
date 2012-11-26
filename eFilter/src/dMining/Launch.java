@@ -108,7 +108,6 @@ public class Launch {
 			HashMap<String, Double> feature = new HashMap<String, Double>();
 			
 			iterator = trainWords.keySet().iterator();
-			int n = 0;
 			while ( iterator.hasNext())
 			{
 				String word = iterator.next();
@@ -140,14 +139,7 @@ public class Launch {
 				{
 					info = InfoGain.claculate(spam_given_number_of_w/number_of_w,  spam_given_number_of_not_w/number_of_not_w , number_of_w);
 				}
-				Double Info = new Double(info);
 				
-			
-				if (Info.isNaN() )
-				{
-					System.out.println(spam_given_number_of_w+ " / " + number_of_w + " : " + spam_given_number_of_not_w + " /"+ number_of_not_w);
-
-				}
 				feature.put(word, info);
 			}
 			
@@ -212,8 +204,8 @@ public class Launch {
 			
 			try 
 			{
-				ArffGenerator.trainGenerate(feature_size, trainFiles);
-				ArffGenerator.testGenerate(feature_size, testFiles);
+				ArffGenerator.trainGenerate(trainFiles);
+				ArffGenerator.testGenerate(testFiles);
 			}catch(Exception e)
 			{
 				System.out.println("Error: Files generation failed");

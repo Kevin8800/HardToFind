@@ -27,26 +27,27 @@ public class ArffGenerator {
 	}
 	
 	
-	public static void trainGenerate(int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
+	public static void trainGenerate( HashMap<String,HashMap<String, Double>> files) throws Exception
 	{
 		String prefix = Constants.train_File_Prefix;
 		
-		generate(prefix, number_of_features, files);
+		generate(prefix, files);
 	}
 	
-	public static void testGenerate(int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
+	public static void testGenerate( HashMap<String,HashMap<String, Double>> files) throws Exception
 	{
 		String prefix = Constants.test_File_Prefix;
 		
-		generate(prefix, number_of_features, files);
+		generate(prefix, files);
 	}
 
-	public static void generate(String prefix, int number_of_features, HashMap<String,HashMap<String, Double>> files) throws Exception
+	public static void generate(String prefix, HashMap<String,HashMap<String, Double>> files) throws Exception
 	{
 		DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		Date date = new Date();
 		String filename = prefix + dateFormat.format(date) + Constants.File_Extension;
-		String filepath = Constants.DeskTop_location + "/" + filename;
+		//String filepath = System.getProperty("user.dir") + System.getProperty("file.separator") + filename;
+		String filepath =  filename;
 
 		Writer output = null;
 	    File file = new File(filepath);

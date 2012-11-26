@@ -22,7 +22,7 @@
 		
 		<div id="rightColumn">
 			<p>express page</p>
-			<form action="Express"> 	
+			<form action="Express" method="post"> 	
 				<fieldset>
 					<input type='submit' id ='doit' name='express' value='Order' /> 
 					<input type='submit' id ='doit' name='express' value='Cancel' /> 

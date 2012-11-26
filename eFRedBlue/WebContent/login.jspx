@@ -18,7 +18,7 @@ version="2.0">
 	<div id="main">
 			<jsp:include page="header.jspx"/>
 			
-			<form action='Login'> 	
+			<form action='Login' method="post"> 	
 				<fieldset id="loginInput">
 					<legend>FoodsRUs customer login</legend>
 						<c:if test="${not empty loginError}">

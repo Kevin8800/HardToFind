@@ -72,17 +72,29 @@ body {
 }
 
 #leftColumn {
-/*     height: 400px; */
     width: 350px;
     float: left;
     background: #99CCFF;
 }
 
 #rightColumn {
-/*     height: 400px; */
     width: 650px;
     float: left;
     background: #eee;
+}
+
+#welcomeNote {
+	height: 500px;
+	width: 350px;
+    float: left;
+    background: #99CCFF;
+}
+
+#categoryColumn {
+	height: 1395px;
+    width: 350px;
+    float: left;
+    background: #99CCFF;
 }
 
 .categoryBox {

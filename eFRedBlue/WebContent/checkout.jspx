@@ -18,48 +18,43 @@ version="2.0">
 	<div id="main">
 		<jsp:include page="header.jspx"/>
 		
-		<div id="leftColumn">
-		<p>leftColumn</p>
-		</div>
-	
-		<div id="rightColumn">
-		<p>Summary</p>
-		
-		<table id="cartTable">
-				<td>Number</td>
-				<td>Name</td>
-				<td>Price</td>
-				<td>Quantity</td>
-				<td>Extended Price</td>
-			<c:forEach var="item" items="${sessionScope.cart.items}">
-	        		<tr>
-					<td>${item.itemNumber}</td>
-					<td>${item.name}</td>
-					<td><f:formatNumber value="${item.price}" type="currency"/></td>
-					<td>${item.quantity}</td>
-					<td><f:formatNumber value="${item.extended}" type="currency"/></td>
-					</tr>
-	   		</c:forEach>
-	   </table>	
+		<div id="summaryTable">
+			<h>Summary</h>
+			<table id="cartTable">
+					<td>Number</td>
+					<td>Name</td>
+					<td>Price</td>
+					<td>Quantity</td>
+					<td>Extended Price</td>
+				<c:forEach var="item" items="${sessionScope.cart.items}">
+		        		<tr>
+						<td>${item.itemNumber}</td>
+						<td>${item.name}</td>
+						<td><f:formatNumber value="${item.price}" type="currency"/></td>
+						<td>${item.quantity}</td>
+						<td><f:formatNumber value="${item.extended}" type="currency"/></td>
+						</tr>
+		   		</c:forEach>
+		   </table>	
+	   </div>
 	   	<div id="totalListsummary" >
 			<p>TOTAL:	${sessionScope.cart.total}</p>
 			<p>SHIPPING:	${sessionScope.cart.shipping}</p>
 			<p>HST(13%):	${sessionScope.cart.HST}</p>
 			<p id="grandTotal">GRAND-TOTAL: ${sessionScope.cart.grandTotal}</p>
-		</div>	
+		</div>
 		<div>	
 		<form action='CheckOut' > 	
 				<c:if test="${not empty checkoutError}">
 				<p>${checkoutError}</p>
 				</c:if>
-				<input type='submit' id ='login' name='checkout' value='checkout'/>
-				<input type='submit' id ='login' name='checkout' value='continue shopping'/>
+				<input type='submit' id ='login' name='checkout' value='Submit'/>
+				<input type='submit' id ='login' name='checkout' value='Cancel'/>
 		</form>	
 		</div>	
 		</div>
 		
 		<jsp:include page="footer.jspx"/>
-	</div>
 </body>
 </html>
 </jsp:root>

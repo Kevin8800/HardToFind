@@ -20,7 +20,7 @@
 		
 		<jsp:include page="header.jspx"/>
 		
-		<div id="leftColumn">
+		<div id="categoryColumn">
 				<c:forEach var="category" items="${categories}">
         		<span class="categoryBox">
 		            <a href="category?selectedCategory=${category.catID}">

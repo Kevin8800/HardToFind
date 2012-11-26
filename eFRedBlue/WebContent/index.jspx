@@ -18,8 +18,8 @@ version="2.0">
 	<div id="main">
 		<jsp:include page="header.jspx"/>
 		
-		<div id="leftColumn">
-			Welcome to FoodsRUS!! The worst looking site on the web!! 
+		<div id="welcomeNote">
+			Welcome to FoodsRUS!! 
 		</div>
 		
 		<div id="rightColumn">

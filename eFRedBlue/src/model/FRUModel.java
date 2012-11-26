@@ -151,6 +151,7 @@ public class FRUModel {
     	}else{
     		shoppingCart.updateQty(itemNumber, Integer.parseInt(qty));
     	}
+    	shoppingCart.checkOutUpdate();
     }
     
     /**

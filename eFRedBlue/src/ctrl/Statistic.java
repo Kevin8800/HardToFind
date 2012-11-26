@@ -31,7 +31,7 @@ public class Statistic extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String target = "statistic.jspx";  
+		String target = "/statistic.jspx";  
 		RequestDispatcher rd = request.getRequestDispatcher(target);
 		rd.forward(request, response);
 		
@@ -41,7 +41,7 @@ public class Statistic extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doGet(request,response);
 	}
 
 }

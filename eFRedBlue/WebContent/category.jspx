@@ -11,8 +11,8 @@
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="stylesheet" type="text/css" href="../css/index.css"/>
-<script type="text/javascript" src="../js/index.js">;</script>
+<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/css/index.css"/>
+<script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/index.js">;</script>
 <title>FoodsRUs</title>
 </head>
 <body>

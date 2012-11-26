@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Express
  */
-@WebServlet("/Express")
 public class Express extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

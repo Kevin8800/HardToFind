@@ -175,6 +175,16 @@ body {
     background: #99CCFF;
 }
 
+#loginBtns {
+	margin-top: 10px;
+}
+
+#loginBtns input{
+	margin-right: 5px;
+}
+
+
+
 .categoryLabelText, .categoryLabelText:visited {
     color: #A62121;
     cursor: pointer;

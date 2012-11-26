@@ -19,7 +19,7 @@ version="2.0">
 			<jsp:include page="header.jspx"/>
 			
 			<form action='Login'> 	
-				<fieldset>
+				<fieldset id="loginInput">
 					<legend>FoodsRUs customer login</legend>
 						<c:if test="${not empty loginError}">
 							<p>${loginError}</p>
@@ -27,14 +27,15 @@ version="2.0">
 						<c:if test="${not empty checkoutError}">
 							<p>${checkoutError}</p>
 						</c:if>
-						<label for='ClientID'>ClientID</label> 			
+						<label for='ClientID'>ClientID:</label> 			
 						<input type ='text' id ='ClientID' name='ClientID' value='${ClientID}'/>
 						<BR />
-						<label for='Password'>Password</label> 			
+						<label for='Password'>Password:</label> 			
 						<input type ='text' id ='Password' name='Password' value='${Password}'/>
-						
-						<input type='submit' id ='login' name='login' value='login'/>
-						<input type='submit' id ='login' name='login' value='cancel'/>
+						<div id="loginBtns">
+							<input type='submit' id ='login' name='login' value='login'/>
+							<input type='submit' id ='login' name='login' value='cancel'/>
+						</div>
 				</fieldset>	
 			</form>
 			

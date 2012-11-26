@@ -188,11 +188,11 @@ body {
     background: #99CCFF;
 }
 
-#loginBtns {
+#loginBtns, #checkoutConfirm{
 	margin-top: 10px;
 }
 
-#loginBtns input{
+#loginBtns input, #checkoutConfirm input{
 	margin-right: 5px;
 }
 

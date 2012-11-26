@@ -15,11 +15,7 @@
 	<div id="main">
 		<jsp:include page="header.jspx"/>
 		
-		<div id="leftColumn">
-			<p>leftColumn</p>
-		</div>
-		
-		<div id="rightColumn">
+		<div id="confirmMsg">
 			<p>Your order is confirmed</p>
 			<p>You can view your order <a href="../${filename}">here</a></p>
 		</div>

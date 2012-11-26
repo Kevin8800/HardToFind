@@ -90,7 +90,6 @@ public class FrontCtrl extends HttpServlet {
 		}
 		else
 		{
-			System.out.println("!!!!Error");
 			response.sendError(404);
 		}
 	}

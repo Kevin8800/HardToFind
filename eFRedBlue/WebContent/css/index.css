@@ -196,17 +196,17 @@ body {
 	margin-right: 5px;
 }
 
-
-
 .categoryLabelText, .categoryLabelText:visited {
     color: #A62121;
     cursor: pointer;
     text-decoration: none;
 }
+
 .categoryLabelText:hover {
     color: #5A4A42;
     text-decoration: none;
 }
+
 #totalListsummary {
 	 color: #A62121;
 	text-align: centre;

@@ -52,7 +52,7 @@ public class CheckOut extends HttpServlet {
 		}
 		else
 		{
-			if (checkout.equals("checkout") )
+			if (checkout.equals("Submit") )
 			{
 				ShoppingCartHelper cart = (ShoppingCartHelper) request.getSession().getAttribute("cart");
 

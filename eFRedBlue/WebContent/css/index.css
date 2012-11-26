@@ -120,6 +120,7 @@ body {
 .qtyInput {
 	width: 40px;
 	margin: 5px;
+	font-size: medium;
 }
 
 #itemtable {

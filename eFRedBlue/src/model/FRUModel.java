@@ -103,14 +103,6 @@ public class FRUModel {
 	    return list;
     }
     
-    /**
-     * 
-     */
-    public List<ItemBean> searchItemPrice(String price) throws SQLException
-    {
-	    list = dao.retrieveItemsPrice(price);
-	    return list;
-    }
     
     /**
      * 

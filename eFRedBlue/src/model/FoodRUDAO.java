@@ -59,10 +59,10 @@ public class FoodRUDAO {
 
 
 	/**
-	 * 
-	 * @param catID
-	 * @return
-	 * @throws SQLException 
+	 * Retrieve all items in the category
+	 * @param catID - the category id
+	 * @return - the list of itemBean represented items 
+	 * @throws SQLException  - encountered database issue.
 	 */
 	public List<ItemBean> retrieveItems(int catID) throws SQLException 
 	{
@@ -92,7 +92,7 @@ public class FoodRUDAO {
 
 	/**
 	 * the method will be called by model class to retrieve a single item
-	 * @param itemNumber
+	 * @param itemNumber - the item number for the item to be retrieved.
 	 * @return the item identified by the unique item number
 	 * @throws SQLException
 	 */
@@ -186,7 +186,12 @@ public class FoodRUDAO {
 
 	
 	
-	/*this method will be used for search.java*/
+	/**
+	 * this method will be used for search items has the specified number within its item number
+	 * @param itemNumber - the number used for search
+	 * @return - the list itemBean represented items which match the specified itemnumber pattern
+	 * @throws SQLException - when encounter database issue
+	 */
 	public List<ItemBean> retrieveItemsNumber(String itemNumber) throws SQLException 
 	{
 		List<ItemBean> list = null;
@@ -222,7 +227,7 @@ public class FoodRUDAO {
 	 * the method will validate client password
 	 * @param ClientID, password
 	 * @return the item identified by the unique item number
-	 * @throws SQLException
+	 * @throws SQLException - when encounter database issue
 	 */
 	public ClientBean validatePassword(String ClientID, String password) throws SQLException 
 	{

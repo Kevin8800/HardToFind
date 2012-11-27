@@ -31,22 +31,22 @@ public class FRUModel {
 	}
 	
 	/**
-	 * 
+	 * The method called by controller, and provide caller the category information
 	 * @return the List of existing categories in the database.
-	 * @throws Exception
+	 * @throws SQLException  -when encounter issue with database
 	 */
-	public List<CategoryBean> retrieveCategory() throws Exception 
+	public List<CategoryBean> retrieveCategory() throws SQLException 
 	{
 		return this.dao.retrieveCategory();
 	}
 	
 	/**
-	 * 
-	 * @param catID
+	 * For the controller to get all items belongs to a specific category
+	 * @param catID - the category id
 	 * @return The list of items that belong to this category
-	 * @throws Exception
+	 * @throws SQLException  -when encounter issue with database
 	 */
-	public List<ItemBean> retrieveItems(int catID) throws Exception 
+	public List<ItemBean> retrieveItems(int catID) throws SQLException  
 	{
 		return this.dao.retrieveItems(catID);
 	}
@@ -54,9 +54,8 @@ public class FRUModel {
 	/**
 	 * The method return a single item, can be used for express order by item number.
 	 * @param itemNumber
-	 * @return
-	 * @throws SQLException 
-	 * @throws Exception
+	 * @return -the item with specific item number.
+	 * @throws SQLException  -when encounter issue with database
 	 */
 	public ItemBean retrieveItem(String itemNumber) throws SQLException 
 	{
@@ -66,10 +65,10 @@ public class FRUModel {
 	/**
 	 * The method return a single item, can be used for express order by item number.
 	 * @param itemNumber
-	 * @return
-	 * @throws Exception
+	 * @return -the validated client
+	 * @throws SQLException  -when encounter issue with database
 	 */
-	public ClientBean validatePassword(String ClientID, String password) throws Exception 
+	public ClientBean validatePassword(String ClientID, String password) throws SQLException  
 	{
 		return this.dao.validatePassword(ClientID, password);
 	}
@@ -106,9 +105,9 @@ public class FRUModel {
     
     /**
      * 
-     * @param number
-     * @return
-     * @throws SQLException
+     * @param number - the item number to search
+     * @return - the list of items match the number pattern
+     * @throws SQLException - when ecountered unhanlded the database issue.
      */
     public List<ItemBean> searchItemNumber(String number) throws SQLException
     {
@@ -145,10 +144,10 @@ public class FRUModel {
     
     /**
      * update shopping with specified the qty for a particular item in cart.
-     * @param shoppingCart
-     * @param itemNumber
-     * @param qty
-     * @throws SQLException 
+     * @param shoppingCart - the cart working on
+     * @param itemNumber - the item number for the itme to be updated
+     * @param qty - the quantity for the item to be updated.
+     * @throws SQLException - when encountered database issue
      */
     public void updateCart(ShoppingCartHelper shoppingCart, String itemNumber, String qty) throws SQLException
     {

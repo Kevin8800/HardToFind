@@ -71,6 +71,13 @@ function addAnotherItem()
 	element2.setAttribute("name", "itemQty");
 	element2.setAttribute("class", "qtyInput");
 	
+	var element3 = document.createElement("input");
+	element3.setAttribute("type", "button");
+	element3.setAttribute("id", "rmItem");
+	element3.setAttribute("name", "rmItem");
+	element3.setAttribute("onclick", "rmvItem(this);");
+	element3.setAttribute("value", "Remove This Item");
+	
 	var form = document.getElementById("expressForm");
 	var elements = form.childNodes;
 	var addBtn = elements[elements.length - 1];
@@ -82,5 +89,22 @@ function addAnotherItem()
 	form.appendChild(element1);
 	form.appendChild(label2);
 	form.appendChild(element2);
+	form.appendChild(element3);
 	form.appendChild(addBtnCpy);
+}
+
+function rmvItem(rmBtn)
+{
+	var form = document.getElementById("expressForm");
+	var previousNode = rmBtn.previousSibling;
+	var previousNode2 = previousNode.previousSibling;
+	var previousNode3 = previousNode2.previousSibling;
+	var previousNode4 = previousNode3.previousSibling;
+	var previousNode5 = previousNode4.previousSibling;
+	form.removeChild(rmBtn);
+	form.removeChild(previousNode);
+	form.removeChild(previousNode2);
+	form.removeChild(previousNode3);
+	form.removeChild(previousNode4);
+	form.removeChild(previousNode5);
 }

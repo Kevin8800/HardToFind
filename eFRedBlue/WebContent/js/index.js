@@ -37,6 +37,24 @@ function checkUpdate()
 	return true;
 }
 
+function checkExpress()
+{
+	var q = document.getElementsByClassName("qtyInput");
+	for(var i=0; i <= q.length; i++)
+	{
+		if (q[i].value <= 0)
+		{
+			alert("The quantity for one of the items is not positive!");
+			return false;
+		}else if (isNaN(q[i].value))
+		{
+			alert("The quantity you specified is not a valid number!");
+			return false;
+		}
+	}
+	return true;
+}
+
 function validateQty(qty)
 {
 	if(qty.value < 0)

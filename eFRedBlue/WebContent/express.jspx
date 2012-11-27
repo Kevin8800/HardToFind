@@ -16,8 +16,8 @@
 		
 		<jsp:include page="header.jspx"/>
 		
-		<form action="Express">
-			<div id="expressForm">
+		<form action="Express" method="get">
+			<div id="expressForm" >
 				<p>Express Order Form</p>
 				<label for='itemNumber'>ItemNumber:</label> 			
 				<input type='text' id='itemNumber' name='itemNumber' value=''/>
@@ -26,6 +26,7 @@
 				<input class='qtyInput' type='text' id='itemQty' name='itemQty' value=''/>
 				
 				<input class='addMore' type="button" id="addMore" name="addMore" value="Add Another Item" onclick="addAnotherItem();"/>
+				
 			</div>
 			
 			<div id="expressBtns">

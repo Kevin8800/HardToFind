@@ -160,7 +160,7 @@ public class FRU extends HttpServlet {
 			}
 			else if (doit.equals("express"))
 			{
-				target = "/express.jspx";
+				target = "/express1.jspx";
 			}
 			else
 			{

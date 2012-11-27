@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+		  xmlns:c="http://java.sun.com/jsp/jstl/core"
+		  xmlns:f="http://java.sun.com/jsp/jstl/fmt"
+version="2.0">
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
+		pageEncoding="ISO-8859-1" session="true"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href= "${pageContext.servletContext.contextPath}/css/index.css"/>
+<title>FoodsRUs</title>
+</head>
+<body>
+	<div id="main">
+		<jsp:include page="header.jspx"/>
+		<div id="ExpressOrder">
+		<form action="Express" method="post">
+			<h>Express Order</h>
+			<div id="shoppingCartBtns">
+					<input type="submit" id="checkout" name="doexpress" value="Checkout"/>
+					<input type="submit" id="continue" name="doexpress" value="Cancel"/>
+			</div>	
+		</form>	
+		<c:if test="${not empty expressError}">
+			<p id="myError">${expressError}</p>
+		</c:if>	
+			<table id="cartTable">
+			<c:if test="${not empty sessionScope.cart.items}">
+				<td>Number</td>
+				<td>Name</td>
+				<td>Price</td>
+				<td>Extended Price</td>
+				<td>Quantity</td>
+				<td></td>
+				<c:forEach var="item" items="${sessionScope.cart.items}">
+	        		<tr>
+					<td>${item.itemNumber}</td>
+					<td>${item.name}</td>
+					<td><f:formatNumber value="${item.price}" type="currency"/></td>
+					<td><f:formatNumber value="${item.extended}" type="currency"/></td>
+					<td>${item.quantity}</td>
+					<form action="Express" method="post" >
+					<input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
+					<td><input type="submit" id="update" name="doexpress" value="Remove"/></td>
+					</form>
+					</tr>	
+	   			</c:forEach>
+	   			
+	   	</c:if>	
+	   	</table>
+	   	
+	   			<form action="Express" method="post" onsubmit="return checkExpress();">
+	   				<label for='itemNumber'>Item Number</label> 			
+					<input type="text" id="itemNumber" name="itemToAdd" value="${item.itemNumber}"/>
+					<label for='quantity'>quantity</label> 			
+					<input class='qtyInput' type='text' id ='quantity' name='qtyToAdd' value='${item.quantity}'/>
+					<c:if test="${empty sessionScope.cart.items}">
+					<input type="submit" id="update" name="doexpress" value="Add"/>
+					</c:if>
+					<c:if test="${not empty sessionScope.cart.items}">
+					<input type="submit" id="update" name="doexpress" value="Add More"/>
+					</c:if>	
+				</form>
+		</div>
+		
+		
+		<div id="totalList">
+			<p>TOTAL:	${sessionScope.cart.total}</p>
+			<p>SHIPPING:	${sessionScope.cart.shipping}</p>
+			<p>HST(13%):	${sessionScope.cart.HST}</p>
+			<p id="grandTotal">GRAND-TOTAL: ${sessionScope.cart.grandTotal}</p>
+		</div>
+			
+		<jsp:include page="footer.jspx"/>
+	</div>
+</body>
+</html>
+</jsp:root>

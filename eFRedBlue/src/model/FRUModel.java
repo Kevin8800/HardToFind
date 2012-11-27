@@ -123,23 +123,31 @@ public class FRUModel {
      * @throws SQLException 
      * @throws Exception
      */
-    public void addToCart(ShoppingCartHelper shoppingCart, String itemNumber, String qty) throws SQLException 
+    public boolean addToCart(ShoppingCartHelper shoppingCart, String itemNumber, String qty) throws SQLException 
     {
+    	boolean result = true;
     	
-		System.out.println("is itemNumber in : " + shoppingCart.hasItem(itemNumber));
-
     	if(shoppingCart.hasItem(itemNumber))
     	{
     		shoppingCart.incrementQty(itemNumber, Integer.parseInt(qty));
+    		shoppingCart.checkOutUpdate();
     	}
     	else
     	{
     		ItemBean item = this.retrieveItem(itemNumber);
-    		item.setQuantity(Integer.parseInt(qty));
-    		shoppingCart.add(item);
-    		System.out.println(shoppingCart.getItems().contains(item));
+    		if (item != null )
+    		{
+    	  		item.setQuantity(Integer.parseInt(qty));
+        		shoppingCart.add(item);
+        		shoppingCart.checkOutUpdate();
+    		}else
+    		{
+    			result = false;
+    		}
+  
     	}
-    	shoppingCart.checkOutUpdate();
+		return result;
+    	
     }
     
     /**

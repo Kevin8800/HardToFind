@@ -141,27 +141,16 @@ public class FRU extends HttpServlet {
 			}
 			else if (doit.equals("search"))
 			{   //search according the part of the item name.
-				String si = (String) request.getParameter("searchItem");
-				String regex1 = "[0-9]+[a-zA-Z]*[0-9]*";
-				
+
 				try
 				{
-					if(si.matches(regex1))
-					{
-					  List<ItemBean> ibl = model.searchItemNumber(si);
-					  request.setAttribute("item", ibl);
-
-					  
-					}else
-					{
-					  List<ItemBean> ibl = model.searchItemName(si);
-					  request.setAttribute("item", ibl);
-
-					}
+					request.setAttribute("item", model.getSearch(request.getParameter("searchItem")));
 				} catch (SQLException e)
 				{
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 				target="/category.jspx";
 			}
 			else if (doit.equals("logout"))

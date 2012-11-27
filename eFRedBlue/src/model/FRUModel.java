@@ -81,20 +81,28 @@ public class FRUModel {
 	 * @return
 	 * @throws SQLException
 	 */
+	public List<ItemBean> getSearch(String para) throws SQLException
+	{
+			String si = para;
+			String regex1 = "[0-9]+[a-zA-Z]*[0-9]*";
+			List<ItemBean> ibl;
+			if(si.matches(regex1))
+			{
+			  ibl = this.searchItemNumber(si);		  
+			}else
+			{
+			 ibl = this.searchItemName(si);
+			}
+	
+		return ibl;
+				
+	}
     public List<ItemBean> searchItemName(String name) throws SQLException
     {
 	    list = dao.retrieveItemsName(name);
 	    return list;
     }
     
-    /**
-     * 
-     */
-    public List<ItemBean> searchItemPrice(String price) throws SQLException
-    {
-	    list = dao.retrieveItemsPrice(price);
-	    return list;
-    }
     
     /**
      * 

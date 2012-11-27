@@ -228,3 +228,9 @@ body {
 	width: 200px;
 	float:right;
 }
+
+#myError {
+	color: #A62121;
+	text-align: center;
+	font-size: x-large;
+}

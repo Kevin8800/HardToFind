@@ -11,29 +11,16 @@ version="2.0">
 		omit-xml-declaration="true" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/css/index.css"/>
+<link rel="stylesheet" type="text/css" href= "${pageContext.servletContext.contextPath}/css/index.css"/>
 <title>FoodsRUs</title>
 </head>
 <body>
 	<div id="main">
 		<jsp:include page="header.jspx"/>
-		
-		<div id="welcomeNote">
-			Welcome to FoodsRUS!! 
-		</div>
-		
-		<div id="rightColumn">
-			<c:forEach var="category" items="${categories}">
-        		<div class="categoryBox">
-		            <a href="category?selectedCategory=${category.catID}">
-		               	<img class="categoryImage" src="${pageContext.servletContext.contextPath}/images/${category.pic_name}" alt="test"/>		                
-		          		 <div class="categoryLabelText">${category.name}</div>
-		            </a>
-        		</div>
-    		</c:forEach>
-		</div>
-		
-		<jsp:include page="footer.jspx"/>
+	</div>
+	<div id="myError">
+	<p>HTTP Error : 500</p>
+	<p>Sorry, Server get into trouble . please contact red_blue@red.cse.yorku.ca</p>
 	</div>
 </body>
 </html>

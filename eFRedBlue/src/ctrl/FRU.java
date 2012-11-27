@@ -175,6 +175,7 @@ public class FRU extends HttpServlet {
 			}
 			else
 			{
+				response.sendError(404);
 				target ="/myError.jspx";
 			}
 		}

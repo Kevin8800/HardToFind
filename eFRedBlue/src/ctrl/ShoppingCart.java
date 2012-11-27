@@ -107,7 +107,7 @@ public class ShoppingCart extends HttpServlet {
 					target = "/login.jspx";
 				}
 			}
-			else if (add.equalsIgnoreCase("Continue"))
+			else if (add.equalsIgnoreCase("Continue Shopping"))
 			{
 				target ="/index.jspx";
 			}

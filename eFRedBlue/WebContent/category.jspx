@@ -24,7 +24,7 @@
 				<c:forEach var="category" items="${categories}">
         		<span class="categoryBox">
 		            <a href="category?selectedCategory=${category.catID}">
-		               	<img class="categoryImage" src="../images/${category.pic_name}" alt="test"/>
+		               	<img class="categoryImage" src="${pageContext.servletContext.contextPath}/images/${category.pic_name}" alt="test"/>
 		               	<div class="categoryLabelText">${category.name}</div>		                
 		                <!--<img class="categoryImage" src="data:image/png;base64,${category.picture}" alt="test"/>-->
 		            </a>

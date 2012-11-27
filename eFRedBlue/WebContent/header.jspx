@@ -21,7 +21,7 @@ version="2.0">
 		
 		<div id="headerRight">
 			<div id="buttons">
-				<form action="FRU">
+				<form action="FRU" method="post">
 					<c:choose>
 						<c:when test="${not empty client}">
 							<p id="clientName">Welcome ${client.clientName}</p>

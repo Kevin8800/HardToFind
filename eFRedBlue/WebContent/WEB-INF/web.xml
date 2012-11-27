@@ -41,4 +41,12 @@
     <servlet-name>Statistic</servlet-name>
     <servlet-class>ctrl.Statistic</servlet-class>
   </servlet>
+ <error-page>
+ 	<error-code>404</error-code>
+ 	<location>/my404.jspx</location>
+ </error-page>
+  <error-page>
+ 	<error-code>500</error-code>
+ 	<location>/my500.jspx</location>
+ </error-page>
 </web-app>

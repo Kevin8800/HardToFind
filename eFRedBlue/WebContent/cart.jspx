@@ -18,10 +18,10 @@ version="2.0">
 	<div id="main">
 		<jsp:include page="header.jspx"/>
 		<div id="shoppingCart">
-		<form action="ShoppingCart" method="get" onsubmit="return checkUpdate();">
+		<form action="ShoppingCart" method="post" onsubmit="return checkUpdate();">
 			<h>Shopping Cart</h>
 			<div id="shoppingCartBtns">
-					<input type="submit" id="continue" name="docart" value="Continue"/>
+					<input type="submit" id="continue" name="docart" value="Continue Shopping"/>
 					<input type="submit" id="checkout" name="docart" value="Checkout"/>
 			</div>	
 		</form>		

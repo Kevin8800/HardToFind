@@ -39,7 +39,7 @@
 		</div>
 		
 		<div id="checkoutConfirm">
-			<form action='CheckOut'>
+			<form action='CheckOut' method="post">
 				<c:if test="${not empty checkoutError}">
 					<p>${checkoutError}</p>
 				</c:if>

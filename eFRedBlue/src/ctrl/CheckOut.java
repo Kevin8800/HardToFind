@@ -43,6 +43,7 @@ public class CheckOut extends HttpServlet {
 		{
 			if (session == null || (ClientBean)session.getAttribute("client") ==null)
 			{
+				session.setAttribute("page","checkout");
 				target = "/login.jspx";
 			}
 			else

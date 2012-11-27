@@ -188,12 +188,26 @@ body {
     background: #99CCFF;
 }
 
-#loginBtns, #checkoutConfirm{
+#loginBtns, #checkoutConfirm, #expressBtns{
 	margin-top: 10px;
 }
 
-#loginBtns input, #checkoutConfirm input{
+#loginBtns input, #checkoutConfirm input, #expressBtns input{
 	margin-right: 5px;
+}
+
+#expressForm {
+	text-align: center;
+}
+
+#expressForm input,label {
+	margin-left: 10px;
+}
+
+#expressForm .addMore {
+	display: block;
+	margin: auto;
+	margin-top: 10px;
 }
 
 .categoryLabelText, .categoryLabelText:visited {

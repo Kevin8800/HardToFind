@@ -16,19 +16,23 @@
 		
 		<jsp:include page="header.jspx"/>
 		
-		<div id="leftColumn">
-		<p>leftColumn</p>
-		</div>
-		
-		<div id="rightColumn">
-			<p>express page</p>
-			<form action="Express"> 	
-				<fieldset>
-					<input type='submit' id ='doit' name='express' value='Order' /> 
-					<input type='submit' id ='doit' name='express' value='Cancel' /> 
-				</fieldset>	
-			</form>
-		</div>
+		<form action="Express">
+			<div id="expressForm">
+				<p>Express Order Form</p>
+				<label for='itemNumber'>ItemNumber:</label> 			
+				<input type='text' id='itemNumber' name='itemNumber' value=''/>
+				
+				<label for='itemQty'>Quantity:</label>
+				<input class='qtyInput' type='text' id='itemQty' name='itemQty' value=''/>
+				
+				<input class='addMore' type="button" id="addMore" name="addMore" value="Add Another Item" onclick="addAnotherItem();"/>
+			</div>
+			
+			<div id="expressBtns">
+				<input type='submit' id ='doit' name='express' value='Order' /> 
+				<input type='submit' id ='doit' name='express' value='Cancel' /> 
+			</div>
+		</form>
 		
 		<jsp:include page="footer.jspx"/>
 	</div>

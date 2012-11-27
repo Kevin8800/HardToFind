@@ -49,3 +49,38 @@ function clearSearchBox(box)
 {
 	box.value = "";
 }
+
+function addAnotherItem()
+{	
+	var br = document.createElement("br");
+	
+	var label1 = document.createElement("label");
+	label1.innerHTML = "ItemNumber:";
+	
+	var element1 = document.createElement("input");
+	element1.setAttribute("type", "text");
+	element1.setAttribute("id", "itemNumber");
+	element1.setAttribute("name", "itemNumber");
+	
+	var label2 = document.createElement("label");
+	label2.innerHTML = "Quantity:";
+	
+	var element2 = document.createElement("input");
+	element2.setAttribute("type", "text");
+	element2.setAttribute("id", "itemQty");
+	element2.setAttribute("name", "itemQty");
+	element2.setAttribute("class", "qtyInput");
+	
+	var form = document.getElementById("expressForm");
+	var elements = form.childNodes;
+	var addBtn = elements[elements.length - 1];
+	var addBtnCpy = addBtn.cloneNode(true); 
+	form.removeChild(addBtn);
+	
+	form.appendChild(br);
+	form.appendChild(label1);
+	form.appendChild(element1);
+	form.appendChild(label2);
+	form.appendChild(element2);
+	form.appendChild(addBtnCpy);
+}

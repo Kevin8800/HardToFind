@@ -106,6 +106,7 @@ public class Express extends HttpServlet {
 				}
 				else
 				{
+					session.setAttribute("page", "express1");
 					target = "/login.jspx";
 				}
 			}

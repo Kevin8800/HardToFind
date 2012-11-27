@@ -58,7 +58,15 @@ public class Login extends HttpServlet {
 						if (! (client == null))
 						{
 							session.setAttribute("client", client);	
-							target = "/index.jspx";
+							if (session.getAttribute("page") != null)
+							{
+								target = "/" +session.getAttribute("page")+".jspx";
+								session.setAttribute("page", null);
+							}
+							else
+							{
+								target = "/index.jspx";
+							}
 						}
 						else
 						{

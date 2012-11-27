@@ -25,26 +25,26 @@ version="2.0">
 					<c:choose>
 						<c:when test="${not empty client}">
 							<p id="clientName">Welcome ${client.clientName}</p>
-							<input type='submit' id ='logoutBtn' name='doit' value='logout'/>	
+							<input class="button" type='submit' id ='logoutBtn' name='doit' value='logout'/>	
 						</c:when>
 						<c:otherwise>
-							<input type='submit' id ='loginBtn' name='doit' value='login'/>
+							<input class="button" type='submit' id ='loginBtn' name='doit' value='login'/>
 						</c:otherwise>
 					</c:choose>
-					<input type='submit' id ='cartBtn' name='doit' value='cart'/>
-					<input type='submit' id ='checkoutBtn' name='doit' value='checkout'/>
-					<input type='submit' id ='expressBtn' name='doit' value='express'/>
+					<input class="button" type='submit' id ='cartBtn' name='doit' value='cart'/>
+					<input class="button" type='submit' id ='checkoutBtn' name='doit' value='checkout'/>
+					<input class="button" type='submit' id ='expressBtn' name='doit' value='express'/>
 				</form>
 			</div>
 				
 			<div id="search">
 				<form action="FRU">
-					<input type='submit' id ='searchBtn' name='doit' value='search'/>
+					<input class="button" type='submit' id ='searchBtn' name='doit' value='search'/>
 					<input type='text' id ='searchText' name='searchItem' value='search' onclick="clearSearchBox(this);"/>
 				</form>
 			</div>
 				
-			<img src="${pageContext.servletContext.contextPath}/images/banner.png" id="banner" alt="FoodsRUs Banner"/>	
+			<img src="${pageContext.servletContext.contextPath}/images/banner1.jpg" id="banner" alt="FoodsRUs Banner"/>	
 		</div>
 	</div>
 </body>

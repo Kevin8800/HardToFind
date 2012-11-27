@@ -21,8 +21,8 @@ version="2.0">
 		<form action="Express" method="post">
 			<h>Express Order</h>
 			<div id="shoppingCartBtns">
-					<input type="submit" id="checkout" name="doexpress" value="Checkout"/>
-					<input type="submit" id="continue" name="doexpress" value="Cancel"/>
+					<input class="button" type="submit" id="checkout" name="doexpress" value="Checkout"/>
+					<input class="button" type="submit" id="continue" name="doexpress" value="Cancel"/>
 			</div>	
 		</form>	
 		<c:if test="${not empty expressError}">
@@ -45,7 +45,7 @@ version="2.0">
 					<td>${item.quantity}</td>
 					<form action="Express" method="post" >
 					<input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
-					<td><input type="submit" id="update" name="doexpress" value="Remove"/></td>
+					<td><input class="button" type="submit" id="update" name="doexpress" value="Remove"/></td>
 					</form>
 					</tr>	
 	   			</c:forEach>
@@ -59,10 +59,10 @@ version="2.0">
 					<label for='quantity'>quantity</label> 			
 					<input class='qtyInput' type='text' id ='quantity' name='qtyToAdd' value='${item.quantity}'/>
 					<c:if test="${empty sessionScope.cart.items}">
-					<input type="submit" id="update" name="doexpress" value="Add"/>
+					<input class="button" type="submit" id="update" name="doexpress" value="Add"/>
 					</c:if>
 					<c:if test="${not empty sessionScope.cart.items}">
-					<input type="submit" id="update" name="doexpress" value="Add More"/>
+					<input class="button" type="submit" id="update" name="doexpress" value="Add More"/>
 					</c:if>	
 				</form>
 		</div>

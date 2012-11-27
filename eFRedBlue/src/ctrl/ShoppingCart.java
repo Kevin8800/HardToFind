@@ -104,6 +104,7 @@ public class ShoppingCart extends HttpServlet {
 				}
 				else
 				{
+					session.setAttribute("page","cart");
 					target = "/login.jspx";
 				}
 			}

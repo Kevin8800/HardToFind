@@ -32,30 +32,54 @@
     		</c:forEach>
 		</div>
 		
-		<div id="rightColumn">
-			<table id="itemtable">
-				<td>Number</td>
-				<td>Name</td>
-				<td>Price</td>
-				<td align="left">Quantity</td>
-				<c:forEach var="item" items="${item}">
-	        		<tr>
-					<td>${item.itemNumber}</td>
-					<td>${item.name}</td>
-					<td><f:formatNumber value="${item.price}" type="currency"/></td>
-					<td>
-						<form action="ShoppingCart" method="post" onsubmit="return checkQty(this);">
-							<input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
-							<input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='1'/>
-							<input class="button" type='submit' id ='add' name='docart' value='Add'/>
-						</form> 
-					</td>
-					</tr>	
-    			</c:forEach>
-    		</table>
-		</div>
-		
-		<jsp:include page="footer.jspx"/>
+	<div id="rightColumn">
+           <div id="rightTable">
+           <table id="itemtable">
+               <td>Number</td>
+               <td>Name</td>
+               <td>Price</td>
+               <td align="left">Quantity</td>
+               <c:set var="si" value="0"> </c:set>
+               <c:set var="ei" value="14"></c:set>
+
+               <c:if test="${param.dopage eq 2}">
+
+                   <c:set var="si" value="15"> </c:set>
+                   <c:set var="ei" value="35"></c:set>
+               </c:if>
+
+               <c:forEach begin="${si}" end="${ei}" var="item" items="${item}">
+                   <tr>
+                   <td>${item.itemNumber}</td>
+                   <td>${item.name}</td>
+                   <td><f:formatNumber value="${item.price}" type="currency"/></td>
+                   <td>
+                       <form action="ShoppingCart" method="post" onsubmit="return checkQty(this);">
+                           <input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
+                           <input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='1'/>
+                           <input class="button" type='submit' id ='add' name='docart' value='Add'/>
+                       </form>
+                   </td>
+                   </tr>
+               </c:forEach>
+            </table>
+            </div>
+                   <div id="page">
+                       <form action="" method="post" >
+                       <c:choose>
+                             <c:when test="${param.dopage eq 2}">
+                                <input class="button" type='submit' name='dopage' value='1'/>
+                                <input class="button" type='submit' name='dopage' value='2' disabled="disabled" />
+                             </c:when>
+                             <c:otherwise>
+                                <input class="button" type='submit' name='dopage' value='1' disabled="disabled" />
+                                <input class="button" type='submit' name='dopage' value='2'/>
+                             </c:otherwise>
+                             </c:choose>
+                       </form>
+               </div>
+       </div>
+       <jsp:include page="footer.jspx"/>
 	</div>
 </body>
 </html>

@@ -155,11 +155,6 @@ body {
 	padding-top: 20px;
 }
 
-#shoppingCartBtns input
-{
-	margin-left: 20px;
-}
-
 #cartTable, #analyticsTable{
 	padding-top: 20px;
 	width: 650px;

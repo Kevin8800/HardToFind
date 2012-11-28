@@ -18,13 +18,7 @@ version="2.0">
 	<div id="main">
 		<jsp:include page="header.jspx"/>
 		<div id="ExpressOrder">
-		<form action="Express" method="post">
-			<h>Express Order</h>
-			<div id="shoppingCartBtns">
-					<input class="button" type="submit" id="checkout" name="doexpress" value="Checkout"/>
-					<input class="button" type="submit" id="continue" name="doexpress" value="Cancel"/>
-			</div>	
-		</form>	
+		<h>Express Order</h>
 		<c:if test="${not empty expressError}">
 			<p id="myError">${expressError}</p>
 		</c:if>	
@@ -67,6 +61,12 @@ version="2.0">
 				</form>
 		</div>
 		
+		<form action="Express" method="post">
+			<div id="shoppingCartBtns">
+					<input class="button" type="submit" id="checkout" name="doexpress" value="Checkout"/>
+					<input class="button" type="submit" id="continue" name="doexpress" value="Cancel"/>
+			</div>	
+		</form>
 		
 		<div id="totalList">
 			<p>TOTAL:	${sessionScope.cart.total}</p>

@@ -142,6 +142,8 @@ body {
 
 #shoppingCart h, #analytics h, #summaryTable h, #ExpressOrder h, #loginForm h{
 	font-size: x-large;
+	color: blue;
+	text-decoration: underline;
 }
 
 #loginForm form {
@@ -172,13 +174,6 @@ body {
 	padding-bottom: 10px;
 }
 
-#totalList {
-	text-align: right;
-	padding-right: 20px;
-	width: 200px;
-	float:right;
-}
-
 #grandTotal {
 	padding-top: 5px;
 	border-top: 1px solid black;
@@ -195,8 +190,8 @@ body {
 	margin-bottom: 10px;
 }
 
-#loginBtns input, #checkoutConfirm input, #expressBtns input{
-	margin-right: 5px;
+#loginBtns input, #checkoutConfirm input, #expressBtns input, #shoppingCartBtns input{
+	margin-right: 10px;
 }
 
 #expressForm {
@@ -225,12 +220,11 @@ body {
     text-decoration: none;
 }
 
-#totalListsummary {
-	 color: #A62121;
-	text-align: centre;
+#totalListsummary, #totalList{
+	color: #A62121;
+	text-align: right;
 	padding-right: 20px;
-	width: 200px;
-	float:right;
+	float: right;
 }
 
 #myError {

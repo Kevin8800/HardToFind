@@ -55,9 +55,10 @@
 			<p id="grandTotal">GRAND-TOTAL: ${sessionScope.cart.grandTotal}</p>
 		</div>
 		
+		<jsp:include page="footer.jspx" />
 	</div>
 
-	<jsp:include page="footer.jspx" />
+	
 </body>
 </html>
 </jsp:root>

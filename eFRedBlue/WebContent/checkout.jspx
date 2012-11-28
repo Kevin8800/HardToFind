@@ -43,8 +43,8 @@
 				<c:if test="${not empty checkoutError}">
 					<p>${checkoutError}</p>
 				</c:if>
-				<input type='submit' id='login' name='checkout' value='Submit' /> 
-				<input type='submit' id='login' name='checkout' value='Cancel' />
+				<input class="button" type='submit' id='login' name='checkout' value='Submit' /> 
+				<input class="button" type='submit' id='login' name='checkout' value='Cancel' />
 			</form>
 		</div>
 		

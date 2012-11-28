@@ -47,7 +47,7 @@
 						<form action="ShoppingCart" method="post" onsubmit="return checkQty(this);">
 							<input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
 							<input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='1'/>
-							<input type='submit' id ='add' name='docart' value='AddToCart'/>
+							<input class="button" type='submit' id ='add' name='docart' value='Add'/>
 						</form> 
 					</td>
 					</tr>	

@@ -17,10 +17,9 @@ version="2.0">
 <body>
 	<div id="main">
 			<jsp:include page="header.jspx"/>
-			
+			<div id="loginForm">
+			<h>Login</h>
 			<form action='Login' method="post"> 	
-				<fieldset id="loginInput">
-					<legend>FoodsRUs customer login</legend>
 						<c:if test="${not empty loginError}">
 							<p id="myError">${loginError}</p>
 						</c:if>
@@ -35,9 +34,9 @@ version="2.0">
 						<div id="loginBtns">
 							<input class="button" type='submit' id ='login' name='login' value='login'/>
 							<input class="button" type='submit' id ='login' name='login' value='cancel'/>
-						</div>
-				</fieldset>	
+						</div>	
 			</form>
+			</div>
 			
 			<jsp:include page="footer.jspx"/>
 		

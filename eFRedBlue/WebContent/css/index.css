@@ -90,7 +90,7 @@ body {
 }
 
 #categoryColumn {
-	height: 1450px;
+	height: 1500px;
     width: 350px;
     float: left;
     background: #99CCFF;
@@ -140,10 +140,13 @@ body {
 	text-align: left;
 }
 
-#shoppingCart h, #analytics h{
+#shoppingCart h, #analytics h, #summaryTable h, #ExpressOrder h, #loginForm h{
 	font-size: x-large;
-	text-decoration: underline;
 }
+
+#loginForm form {
+	padding-top: 20px;
+} 
 
 #shoppingCartBtns
 {
@@ -189,6 +192,7 @@ body {
 
 #loginBtns, #checkoutConfirm, #expressBtns{
 	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #loginBtns input, #checkoutConfirm input, #expressBtns input{
@@ -241,8 +245,6 @@ body {
     border-radius: 15px 15px 15px 15px;
     font-size:medium;
     color: #FFFFFF;
-    margin-left: 18%;
-    margin-top: 8px;
 }
 .button:hover {
     background: none repeat scroll 0 0 #FFFFFF;

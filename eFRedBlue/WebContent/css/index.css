@@ -16,7 +16,7 @@ body {
 }
 
 #main { 
-	background: #eee; 
+	background: -moz-linear-gradient(center bottom , #CCCCCC, #EEEEEE 35%) repeat scroll 0 0 transparent;
 }
 
 #header {
@@ -80,7 +80,6 @@ body {
 #rightColumn {
     width: 650px;
     float: left;
-    background: -moz-linear-gradient(center bottom , #CCCCCC, #EEEEEE 35%) repeat scroll 0 0 transparent;
 }
 
 #welcomeNote {

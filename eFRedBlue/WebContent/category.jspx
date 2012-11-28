@@ -37,7 +37,7 @@
 				<td>Number</td>
 				<td>Name</td>
 				<td>Price</td>
-				<td>Quantity</td>
+				<td align="left">Quantity</td>
 				<c:forEach var="item" items="${item}">
 	        		<tr>
 					<td>${item.itemNumber}</td>

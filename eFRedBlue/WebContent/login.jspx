@@ -33,8 +33,8 @@ version="2.0">
 						<label for='Password'>Password:</label> 			
 						<input type ='text' id ='Password' name='Password' value='${Password}'/>
 						<div id="loginBtns">
-							<input type='submit' id ='login' name='login' value='login'/>
-							<input type='submit' id ='login' name='login' value='cancel'/>
+							<input class="button" type='submit' id ='login' name='login' value='login'/>
+							<input class="button" type='submit' id ='login' name='login' value='cancel'/>
 						</div>
 				</fieldset>	
 			</form>

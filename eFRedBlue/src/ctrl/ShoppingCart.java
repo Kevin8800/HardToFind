@@ -38,7 +38,7 @@ public class ShoppingCart extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (add != null)
 		{
-			if (add.equals("AddToCart"))
+			if (add.equals("Add"))
 			{
 				
 				ShoppingCartHelper cart = (ShoppingCartHelper)session.getAttribute("cart");

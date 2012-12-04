@@ -102,7 +102,7 @@ public class Express extends HttpServlet {
 			{
 				if ((ClientBean)session.getAttribute("client") != null)
 				{
-					target = "/checkout.jspx";
+					target = "/cart.jspx";
 				}
 				else
 				{

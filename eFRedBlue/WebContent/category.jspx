@@ -21,50 +21,59 @@
 		<jsp:include page="header.jspx"/>
 		
 		<div id="categoryColumn">
-				<c:forEach var="category" items="${categories}">
-        		<span class="categoryBox">
+			<c:forEach var="category" items="${categories}">
+	       		<span class="categoryBox">
 		            <a href="category?selectedCategory=${category.catID}">
 		               	<img class="categoryImage" src="${pageContext.servletContext.contextPath}/images/${category.pic_name}" alt="test"/>
 		               	<div class="categoryLabelText">${category.name}</div>		                
 		                <!--<img class="categoryImage" src="data:image/png;base64,${category.picture}" alt="test"/>-->
 		            </a>
-        		</span>
+	       		</span>
     		</c:forEach>
 		</div>
 		
 	<div id="rightColumn">
-           <div id="rightTable">
-           <table id="itemtable">
-               <td>Number</td>
-               <td>Name</td>
-               <td>Price</td>
-               <td align="left">Quantity</td>
-               <c:set var="si" value="0"> </c:set>
-               <c:set var="ei" value="14"></c:set>
-
-               <c:if test="${param.dopage eq 2}">
-
-                   <c:set var="si" value="15"> </c:set>
-                   <c:set var="ei" value="35"></c:set>
-               </c:if>
-
-               <c:forEach begin="${si}" end="${ei}" var="item" items="${item}">
-                   <tr>
-                   <td>${item.itemNumber}</td>
-                   <td>${item.name}</td>
-                   <td><f:formatNumber value="${item.price}" type="currency"/></td>
-                   <td>
-                       <form action="ShoppingCart" method="post" onsubmit="return checkQty(this);">
-                           <input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
-                           <input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='1'/>
-                           <input class="button" type='submit' id ='add' name='docart' value='Add'/>
-                       </form>
-                   </td>
-                   </tr>
-               </c:forEach>
-            </table>
-            </div>
+			<c:choose>
+				<c:when test="${empty item}">
+					<h id="myError">Nothing Found</h>	
+				</c:when>
+				<c:otherwise>
+					<div id="rightTable">
+			           <table id="itemtable">
+			               <td>Number</td>
+			               <td>Name</td>
+			               <td>Price</td>
+			               <td align="left">Quantity</td>
+			               <c:set var="si" value="0"> </c:set>
+			               <c:set var="ei" value="14"></c:set>
+			
+			               <c:if test="${param.dopage eq 2}">
+			
+			                   <c:set var="si" value="15"> </c:set>
+			                   <c:set var="ei" value="35"></c:set>
+			               </c:if>
+			
+			               <c:forEach begin="${si}" end="${ei}" var="item" items="${item}">
+			                   <tr>
+			                   <td>${item.itemNumber}</td>
+			                   <td>${item.name}</td>
+			                   <td><f:formatNumber value="${item.price}" type="currency"/></td>
+			                   <td>
+			                       <form action="ShoppingCart" method="post" onsubmit="return checkQty(this);">
+			                           <input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
+			                           <input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='1'/>
+			                           <input class="button" type='submit' id ='add' name='docart' value='Add'/>
+			                       </form>
+			                   </td>
+			                   </tr>
+			               </c:forEach>
+			            </table>
+			            </div>
+				</c:otherwise>
+			</c:choose>
+                       </div>
                    <div id="page">
+                   <c:if test="${not empty item}">
                        <form action="" method="post" >
                        <c:choose>
                              <c:when test="${param.dopage eq 2}">
@@ -77,7 +86,8 @@
                              </c:otherwise>
                              </c:choose>
                        </form>
-               </div>
+                    </c:if>
+               
        </div>
        <jsp:include page="footer.jspx"/>
 	</div>

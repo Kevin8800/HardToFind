@@ -44,7 +44,7 @@ function checkExpress()
 	{
 		if (q[i].value <= 0)
 		{
-			alert("The quantity for one of the items is not positive!");
+			alert("The quantity for one of the items is not positive or is zero!");
 			return false;
 		}else if (isNaN(q[i].value))
 		{

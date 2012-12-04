@@ -65,7 +65,7 @@ public class CheckOut extends HttpServlet {
 				}
 				else if (cart== null  || cart.getItems().size() == 0) 
 				{
-					request.setAttribute("checkoutError", "Can not check out, you cart is empty");
+					request.setAttribute("checkoutError", "Can not check out, your cart is empty");
 					target="/checkout.jspx";	
 				}
 				else

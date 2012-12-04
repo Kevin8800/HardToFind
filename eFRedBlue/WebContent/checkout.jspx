@@ -41,7 +41,7 @@
 		<div id="checkoutConfirm">
 			<form action='CheckOut' method="post">
 				<c:if test="${not empty checkoutError}">
-					<p>${checkoutError}</p>
+					<p id="myError">${checkoutError}</p>
 				</c:if>
 				<input class="button" type='submit' id='login' name='checkout' value='Submit' /> 
 				<input class="button" type='submit' id='login' name='checkout' value='Cancel' />

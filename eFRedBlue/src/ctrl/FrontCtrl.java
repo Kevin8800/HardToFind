@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CategoryBean;
 import model.FRUModel;
+import util.Constants;
 
 /**
  * Servlet implementation class FontCtrl
@@ -35,7 +36,20 @@ public class FrontCtrl extends HttpServlet {
 		FRUModel fru;
 		try {
 			fru = new FRUModel();
-			List<CategoryBean> cat =  fru.retrieveCategory();
+			List<CategoryBean> cat = null;
+			for (int i = 0 ; i < Constants.number_of_retry; i++)
+			{
+				try 
+				{
+					cat =  fru.retrieveCategory();
+					break;
+				}
+				catch (java.sql.SQLNonTransientConnectionException sql)
+				{
+						this.wait(5000);
+				}
+				
+			}
 			
 			this.getServletContext().setAttribute("fru", fru);
 			// poke items

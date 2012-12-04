@@ -1,6 +1,8 @@
 package ctrl;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,6 +56,9 @@ public class Login extends HttpServlet {
 				{
 					try 
 					{
+						
+						Integer.parseInt(clientID);
+						Integer.parseInt(password);
 						ClientBean client = model.validatePassword(clientID, password);
 						if (! (client == null))
 						{
@@ -74,7 +79,13 @@ public class Login extends HttpServlet {
 							target = "/login.jspx";
 
 						}
-					} 
+					}
+					catch (NumberFormatException e)
+					{
+						e.printStackTrace();
+						request.setAttribute("loginError", "Both username and password should be numbers");
+						target = "/login.jspx";
+					}
 					catch (Exception e) 
 					{
 						e.printStackTrace();

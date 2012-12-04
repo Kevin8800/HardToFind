@@ -210,6 +210,10 @@ body {
     text-decoration: none;
 }
 
+.categoryLink {
+	margin-top: 10px;
+}
+
 .categoryLabelText:hover {
     color: #5A4A42;
     text-decoration: none;

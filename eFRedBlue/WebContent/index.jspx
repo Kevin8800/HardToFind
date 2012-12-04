@@ -19,7 +19,12 @@ version="2.0">
 		<jsp:include page="header.jspx"/>
 		
 		<div id="welcomeNote">
-			Welcome to FoodsRUS!! 
+			Welcome to FoodsRUS!!
+			<c:forEach var="category" items="${categories}">
+	            <a href="category?selectedCategory=${category.catID}">		                
+	          		 <div class="categoryLink">${category.name}</div>
+	            </a>
+    		</c:forEach> 
 		</div>
 		
 		<div id="rightColumn">

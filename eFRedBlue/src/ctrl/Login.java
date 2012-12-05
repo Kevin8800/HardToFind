@@ -111,16 +111,9 @@ public class Login extends HttpServlet {
 				target = "/index.jspx";		
 			}
 		}	
-		
-		
-		System.out.println("login : " + session.getAttribute("login"));
-		System.out.println("errorMsg : " + session.getAttribute("loginError"));
 		request.getRequestDispatcher(target).forward(request, response);
 
 	}
-		
-
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

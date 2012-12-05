@@ -47,7 +47,10 @@ public class FrontCtrl extends HttpServlet {
 				}
 				catch (java.sql.SQLNonTransientConnectionException sql)
 				{
-						wait(5000);
+					synchronized(this)	
+					{
+						this.wait(5000);
+					}
 				}
 			}
 			

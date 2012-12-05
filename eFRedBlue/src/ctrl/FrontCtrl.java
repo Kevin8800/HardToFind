@@ -34,9 +34,9 @@ public class FrontCtrl extends HttpServlet {
 		super.init();
 		//the singleton model need to be initialized here
 		FRUModel fru;
+		List<CategoryBean> cat = null;
 		try {
 			fru = new FRUModel();
-			List<CategoryBean> cat = null;
 			/* try 5 times if DB connection is not avialiable */
 			for (int i = 0 ; i < Constants.number_of_retry; i++)
 			{
@@ -47,10 +47,10 @@ public class FrontCtrl extends HttpServlet {
 				}
 				catch (java.sql.SQLNonTransientConnectionException sql)
 				{
-					synchronized(this)	
+					synchronized (this) 
 					{
-						this.wait(5000);
-					}
+						wait(5000);
+					}	
 				}
 			}
 			
@@ -62,6 +62,7 @@ public class FrontCtrl extends HttpServlet {
 				String itemName = "item" + c.getCatID();
 				this.getServletContext().setAttribute(itemName,fru.retrieveItems(c.getCatID()));
 			}
+			
 			/*Set Id that will be used for tracking different sessions */
 			int id = 0;
 			this.getServletContext().setAttribute("id", id);

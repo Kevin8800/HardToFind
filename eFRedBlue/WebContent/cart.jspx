@@ -33,7 +33,7 @@ version="2.0">
 					<td>${item.name}</td>
 					<td><f:formatNumber value="${item.price}" type="currency"/></td>
 					<td><f:formatNumber value="${item.extended}" type="currency"/></td>
-					<form action="ShoppingCart" method="get" onsubmit="return checkUpdate();">
+					<form action="ShoppingCart" method="post" onsubmit="return checkUpdate();">
 					<input type="hidden" id="itemToAdd" name="itemToAdd" value="${item.itemNumber}"/>
 					<td><input class='qtyInput' type='text' id ='qtyToAdd' name='qtyToAdd' value='${item.quantity}'/></td>
 					<td><input class="button" type="submit" id="update" name="docart" value="Update"/></td>

@@ -29,36 +29,7 @@ public class FRU extends HttpServlet {
         super();
     }
     
-    /**
-     * 
-     */
-	@Override
-	public void init() throws ServletException {
-		
-		super.init();
 
-		//the singleton model need to be initialized here
-		FRUModel fru;
-		try {
-			fru = new FRUModel();
-			List<CategoryBean> cat =  fru.retrieveCategory();
-			
-			this.getServletContext().setAttribute("fru", fru);
-			// poke items
-			this.getServletContext().setAttribute("categories", cat);
-			for (CategoryBean c : cat )
-			{
-				String itemName = "item" + c.getCatID();
-				this.getServletContext().setAttribute(itemName,fru.retrieveItems(c.getCatID()));
-			}
-			//poke id
-			int id = 0;
-			this.getServletContext().setAttribute("id", id);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
-	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */

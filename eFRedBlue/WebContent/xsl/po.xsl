@@ -20,7 +20,7 @@
 		<th width='70px'>Number</th>
 		<th width='180px'>Name</th>
 		<th width='30px'>Price</th>
-		<th width='30px'>Quantiry</th>
+		<th width='30px'>Quantity</th>
 		<th width='30px'>Extended</th>
 		<xsl:for-each select="items/item">
 			<tr>

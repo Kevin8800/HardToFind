@@ -64,16 +64,20 @@ public class FRU extends HttpServlet {
 	 */
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// assume that index.html, we have four buttons , each called login , shopping cart, check out and express check out
-		// let the button call doit 	
+		/* In the main page, we have four buttons, login , shopping cart, check out and express check out
+		 * the name of the button is called doit.
+		 * Customer can also select a category, In this case, doit will be null
+		 */
 		String target;
 		String doit = request.getParameter("doit");
 		HttpSession session= request.getSession();
 		FRUModel model = (FRUModel) this.getServletContext().getAttribute("fru"); 
+		/* customer select a catagory */
 		if (doit == null)
 		{
 			try
 			{
+				/* check if customer select a category */
 				if(request.getParameter("selectedCategory")!= null)
 				{
 					String itemName = "item" + request.getParameter("selectedCategory");
@@ -81,6 +85,7 @@ public class FRU extends HttpServlet {
 					target = "/category.jspx";
 				}
 				
+				/* check if customer adding items to shopping cart*/
 				else if (request.getParameter("add")!= null)
 				{	
 					String add = request.getParameter("add");
@@ -107,12 +112,15 @@ public class FRU extends HttpServlet {
 						}
 						target ="/cart.jspx";
 					}
+					/* if it is none of the above , send to index page*/
+
 					else
 					{
 						target ="/index.jspx";
 
 					}
 				}
+				/* if URL does not match , send to index page*/
 				else
 				{		
 					target = "/index.jspx";
@@ -125,7 +133,7 @@ public class FRU extends HttpServlet {
 				target = "/exception.jspx";
 			}
 		}
-		
+		/* cusotmer click on one of the buttons */
 		else 
 		{	
 			if (doit.equals("login"))
@@ -163,6 +171,7 @@ public class FRU extends HttpServlet {
 			{
 				target = "/express1.jspx";
 			}
+			/*if URL does not match one of the buttons above , send to page not found*/
 			else
 			{
 				response.sendError(404);

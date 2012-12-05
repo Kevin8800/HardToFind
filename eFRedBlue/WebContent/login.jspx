@@ -14,7 +14,7 @@ version="2.0">
 <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/css/index.css"/>
 <title>FoodsRUs</title>
 </head>
-<body>
+<body onload="SetFocus()">
 	<div id="main">
 			<jsp:include page="header.jspx"/>
 			<div id="loginForm">
@@ -28,6 +28,7 @@ version="2.0">
 						</c:if>
 						<label for='ClientID'>ClientID:</label> 			
 						<input type ='text' id ='ClientID' name='ClientID' value='${ClientID}'/>
+						<BR />
 						<BR />
 						<label for='Password'>Password:</label> 			
 						<input type ='text' id ='Password' name='Password' value='${Password}'/>

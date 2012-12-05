@@ -126,3 +126,19 @@ function rmvItem(rmBtn)
 	form.removeChild(previousNode4);
 	form.removeChild(previousNode5);
 }
+
+function SetFocus()
+{
+    // safety check, make sure its a post 1999 browser
+    if (!document.getElementById)
+    {
+        return;
+    }
+
+    var txtMyInputBoxElement = document.getElementById("ClientID");
+
+    if (txtMyInputBoxElement != null)
+    {
+        txtMyInputBoxElement.focus();
+    }
+}

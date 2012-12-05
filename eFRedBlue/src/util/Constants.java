@@ -5,14 +5,14 @@ import java.text.DecimalFormat;
 
 /**
  * 
- * @author Vicky
+ * @author Siwei
  * this class hold project constants
  *
  */
 		
 public  class Constants 
 {
-	public static final int number_of_retry = 9;
+	public static final int number_of_retry = 5;
 	
 	public static final String XMLEXTENSION = ".xml";
 	public static final String FOLDERTOEXPORT = "export/";

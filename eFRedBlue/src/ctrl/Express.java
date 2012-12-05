@@ -34,8 +34,10 @@ public class Express extends HttpServlet {
 		String express = request.getParameter("doexpress");
 		String target ;
 		HttpSession session = request.getSession();
+		/* customer do express order*/
 		if (express != null)
 		{
+			/* customer want to order item*/
 			if (express.equals("Add More")|| express.equals("Add"))
 			{
 				
@@ -71,6 +73,7 @@ public class Express extends HttpServlet {
 				}
 				target ="/express1.jspx";
 			}
+			/* customer want to remove an item*/
 			else if (express.equalsIgnoreCase("remove"))
 			{
 				if ((ShoppingCartHelper)session.getAttribute("cart")!= null)
@@ -98,6 +101,7 @@ public class Express extends HttpServlet {
 					target = "/my500.jspx";
 				}
 			}
+			/* customer want to checkout an item*/
 			else if (express.equalsIgnoreCase("Checkout"))
 			{
 				if ((ClientBean)session.getAttribute("client") != null)
@@ -119,6 +123,7 @@ public class Express extends HttpServlet {
 				target = "/my404.jspx";
 			}
 		}
+		/* unknown request, go to error page*/
 		else
 		{
 			target = "/my404.jspx";

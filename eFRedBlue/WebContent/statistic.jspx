@@ -26,8 +26,8 @@
 					<td>Total viewers </td>
 				</tr>
         		<tr>
-	        		<td>${aveAddItemTime} sec</td>
-					<td>${ave_fresh_checkout} sec</td>
+	        	<td><f:formatNumber value="${aveAddItemTime}" pattern="#0.00 sec" /> </td>
+				<td><f:formatNumber value="${ave_fresh_checkout}" pattern="#0.00 sec" /></td>
 					<td>${map.size()}</td>
 					<td>${viewer}</td>	
 				</tr>	

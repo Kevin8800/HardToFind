@@ -36,8 +36,10 @@ public class ShoppingCart extends HttpServlet {
 		String add = request.getParameter("docart");
 		String target ;
 		HttpSession session = request.getSession();
+		/*there is some thing to add to shopping car*/
 		if (add != null)
 		{
+			/* first time add an item*/
 			if (add.equals("Add"))
 			{
 				
@@ -47,15 +49,18 @@ public class ShoppingCart extends HttpServlet {
 					cart = new ShoppingCartHelper();
 
 				}
+				
+				/* used for tacking sessions*/
 				if(session.getAttribute("newCart") == null)
 				{		
-				    session.setAttribute("newCart", "new"); // for listener
+				    session.setAttribute("newCart", "new"); 
 				   
 				}else
 				{
-					session.setAttribute("newCart", "old"); // for listener
+					session.setAttribute("newCart", "old"); 
 				  
 				}
+				
 				try 
 				{
 					FRUModel fru = (FRUModel) this.getServletContext().getAttribute("fru");
@@ -70,6 +75,8 @@ public class ShoppingCart extends HttpServlet {
 				}
 				target ="/cart.jspx";
 			}
+			
+			/* update an existing item*/
 			else if (add.equalsIgnoreCase("Update"))
 			{
 				if ((ShoppingCartHelper)session.getAttribute("cart")!= null)
@@ -96,6 +103,7 @@ public class ShoppingCart extends HttpServlet {
 					target = "/my500.jspx";
 				}
 			}
+			/* customer checkout orders*/
 			else if (add.equalsIgnoreCase("Checkout"))
 			{
 				if ((ClientBean)session.getAttribute("client") != null)
@@ -108,19 +116,23 @@ public class ShoppingCart extends HttpServlet {
 					target = "/login.jspx";
 				}
 			}
+			/* customer want to add more item to cart*/
 			else if (add.equalsIgnoreCase("Continue Shopping"))
 			{
 				target ="/index.jspx";
 			}
+			
+			/* unknown request , go to error page*/
 			else
 			{					
 				target = "/my404.jspx";
 			}
 		}
+		/* unknown request , go to error page*/
 		else
 		{
 			target = "/my404.jspx";
-			}
+		}
 		
 		request.getRequestDispatcher(target).forward(request, response);
 	}

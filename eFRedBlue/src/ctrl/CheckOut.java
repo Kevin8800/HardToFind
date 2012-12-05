@@ -30,15 +30,24 @@ public class CheckOut extends HttpServlet {
     }
 
 	/**
+	 *  
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*In this page , customer can do check out or continue shopping which is go back to the index page
+		 */
+		
 		String checkout = request.getParameter("checkout");
 		String target;
 		HttpSession session =  request.getSession(false);
-		if(request.getSession().getAttribute("continue") == null){
-		request.getSession().setAttribute("continue", "first"); // for listener
+		
+		// used for statistics 
+		if(request.getSession().getAttribute("continue") == null)
+		{
+			request.getSession().setAttribute("continue", "first");
 		}
+		
+		/*The first time come into check out */
 		if (checkout==null)
 		{
 			if (session == null || (ClientBean)session.getAttribute("client") ==null)
@@ -51,6 +60,9 @@ public class CheckOut extends HttpServlet {
 				target="/checkout.jspx";	
 			}
 		}
+		
+		/* Customer click submit button on checkout page */
+
 		else
 		{
 			if (checkout.equals("Submit") )
@@ -100,6 +112,7 @@ public class CheckOut extends HttpServlet {
 					target= "/confirm.jspx";
 				}
 			}
+			/* click on cancel button , go back to the main page*/
 			else
 			{
 				target = "/index.jspx";

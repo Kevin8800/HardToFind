@@ -33,13 +33,13 @@ public class Login extends HttpServlet {
 		String login = request.getParameter("login");
 		String target;
 		HttpSession session = request.getSession();
-		System.out.println(session.getId());
-
-		System.out.println("the value is session is :" +session.getAttribute("test") );
+		/* first time come into the login page*/
 		if (login==null)
 		{
 			target = "/login.jspx";
 		}
+		
+		/* first time come into the login page*/
 		else
 		{
 			if (login.equals("login"))
@@ -49,20 +49,22 @@ public class Login extends HttpServlet {
 				request.setAttribute("ClientID", clientID);
 				request.setAttribute("Password", password);
 
-				//check db and login
+				//check db, if user exists then login
 				FRUModel model = (FRUModel) this.getServletContext().getAttribute("fru"); 
 				
 				if(clientID!=null && password!=null)
 				{
 					try 
 					{
-						
+						/* check if the input is a string or not*/
 						Integer.parseInt(clientID);
 						Integer.parseInt(password);
+						
 						ClientBean client = model.validatePassword(clientID, password);
 						if (! (client == null))
 						{
 							session.setAttribute("client", client);	
+							/* remeber the page and go back after login*/
 							if (session.getAttribute("page") != null)
 							{
 								target = "/" +session.getAttribute("page")+".jspx";
@@ -71,41 +73,43 @@ public class Login extends HttpServlet {
 							else
 							{
 								target = "/index.jspx";
+								session.setAttribute("page", null);
 							}
 						}
+						/* can not login due to wrong credentials, show errors */
 						else
 						{
 							request.setAttribute("loginError", "Login credential is incorrect");
 							target = "/login.jspx";
-
 						}
 					}
+					/* input are not numbers &*/
 					catch (NumberFormatException e)
 					{
 						e.printStackTrace();
 						request.setAttribute("loginError", "Both username and password should be numbers");
 						target = "/login.jspx";
 					}
+					/* input are not numbers */
 					catch (Exception e) 
 					{
 						e.printStackTrace();
 						request.setAttribute("loginError", e.getMessage());
 						target = "/login.jspx";
 					}
-
 				}
+				/* if user name or password is empty */
 				else
 				{
 					request.setAttribute("loginError", "ClientID or Password can not be empty");
 					target = "/login.jspx";
 				}
 			}
-			
+			/* come from somewhere else, go back to index page*/
 			else
 			{
 				target = "/index.jspx";		
 			}
-			
 		}	
 		
 		
